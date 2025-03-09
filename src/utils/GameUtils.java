@@ -7,10 +7,25 @@ import java.util.List;
 
 public class GameUtils {
 
+    private static int stepCounter = 0;
+
+    public static void resetStepCounter() {
+        stepCounter = 0;
+    }
+
+    public static void incrementStepCounter() {
+        stepCounter++;
+    }
+
+    public static int getStepCounter() {
+        return stepCounter;
+    }
+
     public static void updateBoardAndPause(ChessBoard board, List<ChessPiece> chessPieces, int pauseDuration) throws InterruptedException {
         board.updateLayout(chessPieces);
         System.out.println(chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
+        incrementStepCounter();
         Thread.sleep(pauseDuration);
     }
 

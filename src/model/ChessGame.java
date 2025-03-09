@@ -115,6 +115,7 @@ public class ChessGame {
         System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
 
+        GameUtils.resetStepCounter();
         long startTime = System.currentTimeMillis();
         sortingAlgorithm.sort(chessPieces, pauseDuration, board);
         long endTime = System.currentTimeMillis();
@@ -128,6 +129,7 @@ public class ChessGame {
 
         System.out.println("\nAlgoritmo: " + sortingAlgorithm.getName());
         System.out.println("\nTiempo total: " + (endTime - startTime) + " ms");
+        System.out.println("Total de paso: " + GameUtils.getStepCounter());
     }
 
     public ChessBoard getBoard() {
