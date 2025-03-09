@@ -1,17 +1,13 @@
 package algorithms;
-
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
-
 public class QuickSort implements SortingAlgorithm {
-
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
         quickSort(chessPieces, 0, chessPieces.size() - 1, pauseDuration, board);
     }
-
     private void quickSort(List<ChessPiece> chessPieces, int low, int high, int pauseDuration, ChessBoard board) throws InterruptedException {
         if (low < high) {
             int partitionIndex = partition(chessPieces, low, high, pauseDuration, board);
@@ -19,7 +15,6 @@ public class QuickSort implements SortingAlgorithm {
             quickSort(chessPieces, partitionIndex + 1, high, pauseDuration, board);
         }
     }
-
     private int partition(List<ChessPiece> chessPieces, int low, int high, int pauseDuration, ChessBoard board) throws InterruptedException {
         ChessPiece pivot = chessPieces.get(high);
         int i = low - 1;
@@ -34,9 +29,10 @@ public class QuickSort implements SortingAlgorithm {
         GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         return i + 1;
     }
-
     @Override
     public String getName() {
         return "Quick Sort";
     }
 }
+
+

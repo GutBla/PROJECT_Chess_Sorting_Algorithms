@@ -1,5 +1,4 @@
 package utils;
-
 import enums.SortingAlgorithmType;
 import enums.ListType;
 import enums.PieceColor;
@@ -8,9 +7,7 @@ import exceptions.InvalidParameterException;
 import exceptions.MissingParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 public class CLIUtils {
-
     public static String getParameterValue(ArrayList<String> params, String key) {
         for (String param : params) {
             if (param.startsWith(key + "=")) {
@@ -23,7 +20,6 @@ public class CLIUtils {
         }
         throw new MissingParameterException("[No presente]");
     }
-
     public static ParsedParams parseParams(String[] args) {
         ArrayList<String> params = new ArrayList<>(Arrays.asList(args));
         String algorithmStr = "";
@@ -31,13 +27,11 @@ public class CLIUtils {
         String colorStr = "";
         String pieceCountStr = "";
         String speedStr = "";
-
         SortingAlgorithmType sortingAlgorithmType = null;
         ListType listType = null;
         PieceColor pieceColor = null;
         int pieceCount = -1;
         int pauseDuration = -1;
-
         try {
             String val = getParameterValue(params, "a");
             sortingAlgorithmType = SortingAlgorithmType.fromCode(val);
@@ -47,7 +41,6 @@ public class CLIUtils {
         } catch (InvalidParameterException e) {
             algorithmStr = "[Invalido]";
         }
-
         try {
             String val = getParameterValue(params, "t");
             listType = ListType.fromCode(val);
@@ -57,7 +50,6 @@ public class CLIUtils {
         } catch (InvalidParameterException e) {
             listTypeStr = "[Invalido]";
         }
-
         try {
             String val = getParameterValue(params, "c");
             pieceColor = PieceColor.fromCode(val);
@@ -67,14 +59,12 @@ public class CLIUtils {
         } catch (InvalidParameterException e) {
             colorStr = "[Invalido]";
         }
-
         try {
             String val = getParameterValue(params, "r");
             pieceCount = Integer.parseInt(val);
             if (pieceCount == 0) {
                 pieceCountStr = "[No presente]";
-            } else if (pieceCount == 1 || pieceCount == 2 || pieceCount == 4 ||
-                    pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16) {
+            } else if (pieceCount == 1 || pieceCount == 2 || pieceCount == 4 || pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16) {
                 pieceCountStr = "[" + pieceCount + "]";
             } else {
                 pieceCountStr = "[Invalido]";
@@ -84,7 +74,6 @@ public class CLIUtils {
         } catch (NumberFormatException e) {
             pieceCountStr = "[Invalido]";
         }
-
         try {
             String val = getParameterValue(params, "s");
             pauseDuration = Integer.parseInt(val);
@@ -100,34 +89,23 @@ public class CLIUtils {
         } catch (NumberFormatException e) {
             speedStr = "[Invalido]";
         }
-
-        if (algorithmStr.equals("[Invalido]") || listTypeStr.equals("[Invalido]") ||
-                colorStr.equals("[Invalido]") || pieceCountStr.equals("[Invalido]") ||
-                speedStr.equals("[Invalido]") || algorithmStr.equals("[No presente]") ||
-                listTypeStr.equals("[No presente]") || colorStr.equals("[No presente]") ||
-                pieceCountStr.equals("[No presente]") || speedStr.equals("[No presente]")) {
+        if (algorithmStr.equals("[Invalido]") || listTypeStr.equals("[Invalido]") || colorStr.equals("[Invalido]") || pieceCountStr.equals("[Invalido]") || speedStr.equals("[Invalido]") || algorithmStr.equals("[No presente]") || listTypeStr.equals("[No presente]") || colorStr.equals("[No presente]") || pieceCountStr.equals("[No presente]") || speedStr.equals("[No presente]")) {
             ExceptionHandler.handleParameterError(algorithmStr, listTypeStr, colorStr, pieceCountStr, speedStr);
         }
-
         validateParams(pieceCount, pauseDuration);
         return new ParsedParams(sortingAlgorithmType, listType, pieceColor, pieceCount, pauseDuration);
     }
-
     private static void validateParams(int pieceCount, int pauseDuration) {
-        if (!(pieceCount == 1 || pieceCount == 2 || pieceCount == 4 ||
-                pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16)
-                || pauseDuration < 100 || pauseDuration > 1000) {
+        if (!(pieceCount == 1 || pieceCount == 2 || pieceCount == 4 || pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16) || pauseDuration < 100 || pauseDuration > 1000) {
             ExceptionHandler.handleParameterError("[Invalido]", "[Invalido]", "[Invalido]", "[Invalido]", "[Invalido]");
         }
     }
-
     public static class ParsedParams {
         private final SortingAlgorithmType sortingAlgorithm;
         private final ListType listType;
         private final PieceColor color;
         private final int pieceCount;
         private final int speed;
-
         public ParsedParams(SortingAlgorithmType sortingAlgorithm, ListType listType, PieceColor color, int pieceCount, int speed) {
             this.sortingAlgorithm = sortingAlgorithm;
             this.listType = listType;
@@ -135,25 +113,22 @@ public class CLIUtils {
             this.pieceCount = pieceCount;
             this.speed = speed;
         }
-
         public SortingAlgorithmType getSortingAlgorithm() {
             return sortingAlgorithm;
         }
-
         public ListType getListType() {
             return listType;
         }
-
         public PieceColor getColor() {
             return color;
         }
-
         public int getPieceCount() {
             return pieceCount;
         }
-
         public int getSpeed() {
             return speed;
         }
     }
 }
+
+

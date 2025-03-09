@@ -1,18 +1,14 @@
 package algorithms;
-
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
 import java.util.ArrayList;
-
 public class MergeSort implements SortingAlgorithm {
-
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
         mergeSort(chessPieces, 0, chessPieces.size() - 1, pauseDuration, board);
     }
-
     private void mergeSort(List<ChessPiece> chessPieces, int left, int right, int pauseDuration, ChessBoard board) throws InterruptedException {
         if (left < right) {
             int middle = left + (right - left) / 2;
@@ -21,7 +17,6 @@ public class MergeSort implements SortingAlgorithm {
             merge(chessPieces, left, middle, right, pauseDuration, board);
         }
     }
-
     private void merge(List<ChessPiece> chessPieces, int left, int middle, int right, int pauseDuration, ChessBoard board) throws InterruptedException {
         ArrayList<ChessPiece> leftList = new ArrayList<>(chessPieces.subList(left, middle + 1));
         ArrayList<ChessPiece> rightList = new ArrayList<>(chessPieces.subList(middle + 1, right + 1));
@@ -43,7 +38,6 @@ public class MergeSort implements SortingAlgorithm {
             GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
     }
-
     @Override
     public String getName() {
         return "Merge Sort";

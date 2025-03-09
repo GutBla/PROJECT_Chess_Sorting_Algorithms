@@ -1,12 +1,9 @@
 package algorithms;
-
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
-
 public class BubbleSort implements SortingAlgorithm {
-
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
         int n = chessPieces.size();
@@ -20,7 +17,6 @@ public class BubbleSort implements SortingAlgorithm {
             }
         }
     }
-
     @Override
     public String getName() {
         return "Bubble Sort";

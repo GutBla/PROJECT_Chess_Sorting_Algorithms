@@ -1,12 +1,9 @@
 package algorithms;
-
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
-
 public class InsertionSort implements SortingAlgorithm {
-
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
         for (int i = 1; i < chessPieces.size(); i++) {
@@ -21,7 +18,6 @@ public class InsertionSort implements SortingAlgorithm {
             GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
     }
-
     @Override
     public String getName() {
         return "Insertion Sort";

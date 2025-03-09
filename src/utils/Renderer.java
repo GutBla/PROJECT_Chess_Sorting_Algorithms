@@ -1,12 +1,9 @@
 package utils;
-
 import enums.ListType;
 import enums.PieceColor;
 import model.ChessBoard;
 import model.ChessPiece;
-
 public class Renderer {
-
     public static void printConfig(String algorithm, ListType listType, PieceColor color, int pieces, int speed) {
         printTitle();
         System.out.println("==========================================================");
@@ -21,7 +18,6 @@ public class Renderer {
         System.out.println("Velocidad: [" + speed + "] ms");
         System.out.println("==========================================================");
     }
-
     public static void printTitle() {
         System.out.println("             _____ _    _ ______  _____ _____ ");
         System.out.println("            / ____| |  | |  ____|/ ____/ ____|");
@@ -30,11 +26,9 @@ public class Renderer {
         System.out.println("           | |____| |  | | |____ ____) |___) |");
         System.out.println("            \\_____|_|  |_|______|_____/_____/ ");
     }
-
     public static void displayBoard(ChessBoard board) {
         System.out.println(getBoardDesign(board));
     }
-
     private static String getBoardDesign(ChessBoard board) {
         ChessPiece[][] grid = board.getGrid();
         StringBuilder sb = new StringBuilder();

@@ -1,5 +1,4 @@
 package enums;
-
 import algorithms.BubbleSort;
 import algorithms.CountingSort;
 import algorithms.HeapSort;
@@ -10,7 +9,6 @@ import algorithms.RadixSort;
 import algorithms.SelectionSort;
 import algorithms.SortingAlgorithm;
 import exceptions.InvalidParameterException;
-
 public enum SortingAlgorithmType {
     BUBBLE_SORT("b", new BubbleSort()),
     SELECTION_SORT("s", new SelectionSort()),
@@ -20,19 +18,15 @@ public enum SortingAlgorithmType {
     HEAP_SORT("h", new HeapSort()),
     COUNTING_SORT("c", new CountingSort()),
     RADIX_SORT("r", new RadixSort());
-
     private final String code;
     private final SortingAlgorithm algorithm;
-
     SortingAlgorithmType(String code, SortingAlgorithm algorithm) {
         this.code = code.toLowerCase();
         this.algorithm = algorithm;
     }
-
     public SortingAlgorithm getAlgorithm() {
         return algorithm;
     }
-
     public static SortingAlgorithmType fromCode(String code) {
         String normalized = code.trim().toLowerCase();
         for (SortingAlgorithmType type : values()) {

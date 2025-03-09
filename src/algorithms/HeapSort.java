@@ -1,12 +1,9 @@
 package algorithms;
-
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
-
 public class HeapSort implements SortingAlgorithm {
-
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
         int n = chessPieces.size();
@@ -19,12 +16,10 @@ public class HeapSort implements SortingAlgorithm {
             heapify(chessPieces, i, 0, pauseDuration, board);
         }
     }
-
     private void heapify(List<ChessPiece> chessPieces, int n, int i, int pauseDuration, ChessBoard board) throws InterruptedException {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
-
         if (left < n && chessPieces.get(left).compareTo(chessPieces.get(largest)) > 0) {
             largest = left;
         }
@@ -37,9 +32,10 @@ public class HeapSort implements SortingAlgorithm {
             heapify(chessPieces, n, largest, pauseDuration, board);
         }
     }
-
     @Override
     public String getName() {
         return "Heap Sort";
     }
 }
+
+
