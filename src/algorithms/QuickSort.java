@@ -1,8 +1,10 @@
 package algorithms;
+
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
+
 public class QuickSort implements SortingAlgorithm {
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
@@ -34,5 +36,4 @@ public class QuickSort implements SortingAlgorithm {
         return "Quick Sort";
     }
 }
-
 

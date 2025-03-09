@@ -1,5 +1,7 @@
 package exceptions;
+
 import utils.Renderer;
+
 public class ExceptionHandler {
     public static void handleParameterError(String algorithm, String listType, String color, String pieceCount, String speed) {
         Renderer.printTitle();

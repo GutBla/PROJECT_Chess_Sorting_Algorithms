@@ -1,4 +1,5 @@
 package model;
+
 import enums.ListType;
 import config.GameConfig;
 import java.util.ArrayList;
@@ -58,41 +59,21 @@ public class ChessBoard {
                 piecePositions = new int[][]{{7, 4}, {7, 3}};
                 break;
             case 4:
-                piecePositions = new int[][]{
-                        {7, 4}, {7, 3},
-                        {7, 2}, {7, 5}
-                };
+                piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}};
                 break;
             case 6:
-                piecePositions = new int[][]{
-                        {7, 4}, {7, 3},
-                        {7, 2}, {7, 5},
-                        {7, 1}, {7, 6}
-                };
+                piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}};
                 break;
             case 8:
-                piecePositions = new int[][]{
-                        {7, 4}, {7, 3},
-                        {7, 2}, {7, 5},
-                        {7, 1}, {7, 6},
-                        {7, 0}, {7, 7}
-                };
+                piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}, {7, 0}, {7, 7}};
                 break;
             case 10:
-                piecePositions = new int[][]{
-                        {6, 0}, {6, 1}, {6, 2}, {6, 3},
-                        {6, 4}, {6, 5}, {6, 6}, {6, 7},
-                        {7, 4}, {7, 3}
-                };
+                piecePositions = new int[][]{{6, 0}, {6, 1}, {6, 2}, {6, 3}, {6, 4}, {6, 5}, {6, 6}, {6, 7}, {7, 4}, {7, 3}};
                 break;
             case 16:
                 piecePositions = new int[][]{
-                        {7, 4}, {7, 3},
-                        {7, 0}, {7, 7},
-                        {7, 2}, {7, 5},
-                        {7, 1}, {7, 6},
-                        {6, 0}, {6, 1}, {6, 2}, {6, 3},
-                        {6, 4}, {6, 5}, {6, 6}, {6, 7}
+                        {7, 4}, {7, 3}, {7, 0}, {7, 7}, {7, 2}, {7, 5}, {7, 1}, {7, 6},
+                        {6, 0}, {6, 1}, {6, 2}, {6, 3}, {6, 4}, {6, 5}, {6, 6}, {6, 7}
                 };
                 break;
             default:

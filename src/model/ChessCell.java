@@ -1,4 +1,5 @@
 package model;
+
 public class ChessCell {
     private final int row;
     private final int column;

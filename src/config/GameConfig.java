@@ -1,7 +1,9 @@
 package config;
+
 import model.ChessGame;
 import utils.CLIUtils;
 import utils.Renderer;
+
 public class GameConfig {
     public static final int BOARD_SIZE = 8;
     public static void startGame(String[] args) throws InterruptedException {

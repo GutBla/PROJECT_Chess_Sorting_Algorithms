@@ -1,4 +1,5 @@
 package enums;
+
 import algorithms.BubbleSort;
 import algorithms.CountingSort;
 import algorithms.HeapSort;
@@ -9,6 +10,7 @@ import algorithms.RadixSort;
 import algorithms.SelectionSort;
 import algorithms.SortingAlgorithm;
 import exceptions.InvalidParameterException;
+
 public enum SortingAlgorithmType {
     BUBBLE_SORT("b", new BubbleSort()),
     SELECTION_SORT("s", new SelectionSort()),

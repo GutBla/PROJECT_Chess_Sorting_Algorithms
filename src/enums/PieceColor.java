@@ -1,5 +1,7 @@
 package enums;
+
 import exceptions.InvalidParameterException;
+
 public enum PieceColor {
     WHITE("w"),
     BLACK("b");

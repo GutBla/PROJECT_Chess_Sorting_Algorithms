@@ -4,6 +4,7 @@ import model.ChessPiece;
 import enums.ListType;
 import metrics.MetricsManager;
 import java.util.List;
+
 public class GameUtils {
     public static void updateBoardAndPause(ChessBoard board, List<ChessPiece> chessPieces, int pauseDuration) throws InterruptedException {
         board.updateLayout(chessPieces);

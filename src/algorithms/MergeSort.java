@@ -1,9 +1,11 @@
 package algorithms;
+
 import model.ChessBoard;
 import model.ChessPiece;
 import utils.GameUtils;
 import java.util.List;
 import java.util.ArrayList;
+
 public class MergeSort implements SortingAlgorithm {
     @Override
     public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
@@ -22,11 +24,8 @@ public class MergeSort implements SortingAlgorithm {
         ArrayList<ChessPiece> rightList = new ArrayList<>(chessPieces.subList(middle + 1, right + 1));
         int i = 0, j = 0, k = left;
         while (i < leftList.size() && j < rightList.size()) {
-            if (leftList.get(i).compareTo(rightList.get(j)) <= 0) {
-                chessPieces.set(k++, leftList.get(i++));
-            } else {
-                chessPieces.set(k++, rightList.get(j++));
-            }
+            if (leftList.get(i).compareTo(rightList.get(j)) <= 0) chessPieces.set(k++, leftList.get(i++));
+            else chessPieces.set(k++, rightList.get(j++));
             GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
         while (i < leftList.size()) {

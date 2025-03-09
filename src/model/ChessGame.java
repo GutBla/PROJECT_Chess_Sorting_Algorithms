@@ -1,4 +1,5 @@
 package model;
+
 import algorithms.SortingAlgorithm;
 import enums.ListType;
 import enums.PieceColor;
@@ -9,11 +10,14 @@ import utils.Renderer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import exceptions.InvalidParameterException;
+
 public class ChessGame {
     private final SortingAlgorithm sortingAlgorithm;
     private final ChessBoard board;
     private final int pauseDuration;
     private final List<ChessPiece> chessPieces;
+
     public ChessGame(SortingAlgorithm sortingAlgorithm, ListType listType, PieceColor color, int pieceCount, int pauseDuration) {
         this.sortingAlgorithm = sortingAlgorithm;
         this.board = new ChessBoard(listType);
@@ -21,6 +25,7 @@ public class ChessGame {
         List<ChessPiece> generatedPieces = generateChessPieces(color, pieceCount);
         this.chessPieces = board.placePiecesRandomly(generatedPieces);
     }
+
     private List<ChessPiece> generateChessPieces(PieceColor color, int pieceCount) {
         ArrayList<ChessPiece> pieces = new ArrayList<>();
         switch (pieceCount) {
@@ -74,14 +79,12 @@ public class ChessGame {
                 }
                 break;
             default:
-                for (int i = 0; i < pieceCount; i++) {
-                    pieces.add(new Pawn(color, (i % 8) + 1));
-                }
-                break;
+                throw new InvalidParameterException("Valor de 'r' no válido");
         }
         Collections.shuffle(pieces);
         return pieces;
     }
+
     public void run() throws InterruptedException {
         System.out.println("\nTipo: " + (board.getListType() == ListType.NUMERIC ? "Numérico" : "Caracter"));
         System.out.println("\n-------------------------------------------------");
@@ -109,6 +112,7 @@ public class ChessGame {
         System.out.println("\nTiempo total: " + MetricsManager.getInstance().getTimeCounter().getFormattedElapsedTime());
         System.out.println("Total de pasos: " + MetricsManager.getInstance().getStepCounter().getSteps());
     }
+
     public ChessBoard getBoard() {
         return board;
     }

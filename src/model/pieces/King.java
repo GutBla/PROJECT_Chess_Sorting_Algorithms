@@ -1,4 +1,5 @@
 package model.pieces;
+
 import enums.PieceColor;
 import model.ChessPiece;
 

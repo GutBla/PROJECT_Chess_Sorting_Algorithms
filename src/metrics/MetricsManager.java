@@ -1,4 +1,5 @@
 package metrics;
+
 public class MetricsManager {
     private static final MetricsManager instance = new MetricsManager();
     private final StepCounter stepCounter;

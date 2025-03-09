@@ -1,4 +1,5 @@
 package metrics;
+
 public class StepCounter {
     private int steps;
     public StepCounter() {
