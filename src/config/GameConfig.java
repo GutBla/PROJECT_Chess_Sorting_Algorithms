@@ -1,7 +1,4 @@
 package config;
-import enums.ListType;
-import enums.PieceColor;
-import enums.SortingAlgorithmType;
 import model.ChessGame;
 import utils.CLIUtils;
 import utils.Renderer;

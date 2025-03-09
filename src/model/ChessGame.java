@@ -99,7 +99,6 @@ public class ChessGame {
         MetricsManager.getInstance().getTimeCounter().start();
         sortingAlgorithm.sort(chessPieces, pauseDuration, board);
         MetricsManager.getInstance().getTimeCounter().stop();
-        long elapsedTime = MetricsManager.getInstance().getTimeCounter().getElapsedTime();
         System.out.println("\n-------------------------------------------------");
         System.out.println("           Tablero Final");
         System.out.println("-------------------------------------------------");
@@ -107,8 +106,8 @@ public class ChessGame {
         System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
         System.out.println("\nAlgoritmo: " + sortingAlgorithm.getName());
-        System.out.println("\nTiempo total: " + elapsedTime + " ms");
-        System.out.println("Total de paso: " + MetricsManager.getInstance().getStepCounter().getSteps());
+        System.out.println("\nTiempo total: " + MetricsManager.getInstance().getTimeCounter().getFormattedElapsedTime());
+        System.out.println("Total de pasos: " + MetricsManager.getInstance().getStepCounter().getSteps());
     }
     public ChessBoard getBoard() {
         return board;

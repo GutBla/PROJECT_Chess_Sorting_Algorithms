@@ -8,25 +8,7 @@ public abstract class ChessPiece implements Comparable<ChessPiece> {
     protected final String charValue;
     protected final String whiteSymbol;
     protected final String blackSymbol;
-    private static final Map<Integer, Integer> customOrderMapping = new HashMap<>();
-    static {
-        customOrderMapping.put(1, 14);
-        customOrderMapping.put(2, 0);
-        customOrderMapping.put(3, 10);
-        customOrderMapping.put(4, 6);
-        customOrderMapping.put(5, 2);
-        customOrderMapping.put(6, 15);
-        customOrderMapping.put(7, 1);
-        customOrderMapping.put(8, 11);
-        customOrderMapping.put(9, 13);
-        customOrderMapping.put(10, 9);
-        customOrderMapping.put(11, 8);
-        customOrderMapping.put(12, 4);
-        customOrderMapping.put(13, 12);
-        customOrderMapping.put(14, 3);
-        customOrderMapping.put(15, 7);
-        customOrderMapping.put(16, 5);
-    }
+
     public ChessPiece(PieceColor color, int originalValue, String charValue, String whiteSymbol, String blackSymbol) {
         this.color = color;
         this.originalValue = originalValue;
