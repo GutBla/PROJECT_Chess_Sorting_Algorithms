@@ -7,25 +7,27 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CountingSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        int max = list.stream().mapToInt(p -> p.getType().getValue()).max().orElse(0);
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        int max = chessPieces.stream().mapToInt(p -> p.getType().getValue()).max().orElse(0);
         int[] count = new int[max + 1];
-        List<ChessPiece> output = new ArrayList<>(list);
-        for (ChessPiece p : list) {
+        ArrayList<ChessPiece> output = new ArrayList<>(chessPieces);
+
+        for (ChessPiece p : chessPieces) {
             count[p.getType().getValue()]++;
         }
         for (int i = 1; i <= max; i++) {
             count[i] += count[i - 1];
         }
-        for (int i = list.size() - 1; i >= 0; i--) {
-            ChessPiece p = list.get(i);
+        for (int i = chessPieces.size() - 1; i >= 0; i--) {
+            ChessPiece p = chessPieces.get(i);
             output.set(count[p.getType().getValue()] - 1, p);
             count[p.getType().getValue()]--;
-            GameUtils.updateBoardAndSleep(board, output, speed);
+            GameUtils.updateBoardAndPause(board, output, pauseDuration);
         }
-        list.clear();
-        list.addAll(output);
+        chessPieces.clear();
+        chessPieces.addAll(output);
     }
 
     @Override

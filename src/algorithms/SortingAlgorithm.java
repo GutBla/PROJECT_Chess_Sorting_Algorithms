@@ -5,6 +5,6 @@ import model.ChessPiece;
 import java.util.List;
 
 public interface SortingAlgorithm {
-    void sort(List<ChessPiece> pieces, int speed, ChessBoard board) throws InterruptedException;
+    void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException;
     String getName();
 }

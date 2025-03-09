@@ -11,20 +11,23 @@ public class GameConfig {
     public static final int BOARD_SIZE = 8;
 
     public static void startGame(String[] args) throws InterruptedException {
+        CLIUtils.ParsedParams parsedParams = CLIUtils.parseParams(args);
 
-        CLIUtils.ParsedParams params = CLIUtils.parseParams(args);
+        Renderer.printConfig(
+                parsedParams.getSortingAlgorithm().getAlgorithm().getName(),
+                parsedParams.getListType(),
+                parsedParams.getColor(),
+                parsedParams.getPieceCount(),
+                parsedParams.getSpeed()
+        );
 
-        Renderer.printConfig(params.getAlgorithmType().getAlgorithm().getName(),
-                params.getListType(),
-                params.getColor(),
-                params.getPieceCount(),
-                params.getSpeed());
-
-        ChessGame game = new ChessGame(params.getAlgorithmType().getAlgorithm(),
-                params.getListType(),
-                params.getColor(),
-                params.getPieceCount(),
-                params.getSpeed());
-        game.run();
+        ChessGame chessGame = new ChessGame(
+                parsedParams.getSortingAlgorithm().getAlgorithm(),
+                parsedParams.getListType(),
+                parsedParams.getColor(),
+                parsedParams.getPieceCount(),
+                parsedParams.getSpeed()
+        );
+        chessGame.run();
     }
 }

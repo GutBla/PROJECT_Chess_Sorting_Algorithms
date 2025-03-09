@@ -16,14 +16,14 @@ public class ChessBoard {
         this.listType = listType;
     }
 
-    public List<ChessPiece> placePiecesRandomly(List<ChessPiece> pieces) {
+    public List<ChessPiece> placePiecesRandomly(List<ChessPiece> chessPieces) {
         clearBoard();
-        List<ChessPiece> shuffled = new ArrayList<>(pieces);
-        Collections.shuffle(shuffled);
+        ArrayList<ChessPiece> shuffledPieces = new ArrayList<>(chessPieces);
+        Collections.shuffle(shuffledPieces);
         Random random = new Random();
-        List<ChessPiece> orderedPieces = new ArrayList<>();
+        ArrayList<ChessPiece> orderedPieces = new ArrayList<>();
 
-        for (ChessPiece piece : shuffled) {
+        for (ChessPiece piece : shuffledPieces) {
             int x, y;
             do {
                 x = random.nextInt(SIZE);
@@ -35,18 +35,18 @@ public class ChessBoard {
         return orderedPieces;
     }
 
-    public void updateLayout(List<ChessPiece> pieces) {
+    public void updateLayout(List<ChessPiece> chessPieces) {
         clearBoard();
         int index = 0;
-        for (int i = SIZE - 1; i >= 0 && index < pieces.size(); i--) {
-            for (int j = 0; j < SIZE && index < pieces.size(); j++) {
-                grid[i][j] = pieces.get(index++);
+        for (int i = SIZE - 1; i >= 0 && index < chessPieces.size(); i--) {
+            for (int j = 0; j < SIZE && index < chessPieces.size(); j++) {
+                grid[i][j] = chessPieces.get(index++);
             }
         }
     }
 
     public List<ChessPiece> compactPieces() {
-        List<ChessPiece> compacted = new ArrayList<>();
+        ArrayList<ChessPiece> compacted = new ArrayList<>();
         for (int i = SIZE - 1; i >= 0; i--) {
             for (int j = 0; j < SIZE; j++) {
                 if (grid[i][j] != null) {

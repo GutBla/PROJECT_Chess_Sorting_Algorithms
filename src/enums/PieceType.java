@@ -3,20 +3,20 @@ package enums;
 public enum PieceType {
     KING(1, "♔", "♚", "a"),
     QUEEN(2, "♕", "♛", "b"),
-    ROOK_I(3, "♖", "♜", "c"),
-    ROOK_II(4, "♖", "♜", "d"),
-    BISHOP_I(5, "♗", "♝", "e"),
-    BISHOP_II(6, "♗", "♝", "f"),
-    KNIGHT_I(7, "♘", "♞", "g"),
-    KNIGHT_II(8, "♘", "♞", "h"),
-    PAWN_1(9, "♙", "♟", "i"),
-    PAWN_2(10, "♙", "♟", "j"),
-    PAWN_3(11, "♙", "♟", "k"),
-    PAWN_4(12, "♙", "♟", "l"),
-    PAWN_5(13, "♙", "♟", "m"),
-    PAWN_6(14, "♙", "♟", "n"),
-    PAWN_7(15, "♙", "♟", "o"),
-    PAWN_8(16, "♙", "♟", "p");
+    ROOK_ONE(3, "♖", "♜", "c"),
+    ROOK_TWO(4, "♖", "♜", "d"),
+    BISHOP_ONE(5, "♗", "♝", "e"),
+    BISHOP_TWO(6, "♗", "♝", "f"),
+    KNIGHT_ONE(7, "♘", "♞", "g"),
+    KNIGHT_TWO(8, "♘", "♞", "h"),
+    PAWN_ONE(9, "♙", "♟", "i"),
+    PAWN_TWO(10, "♙", "♟", "j"),
+    PAWN_THREE(11, "♙", "♟", "k"),
+    PAWN_FOUR(12, "♙", "♟", "l"),
+    PAWN_FIVE(13, "♙", "♟", "m"),
+    PAWN_SIX(14, "♙", "♟", "n"),
+    PAWN_SEVEN(15, "♙", "♟", "o"),
+    PAWN_EIGHT(16, "♙", "♟", "p");
 
     private final int value;
     private final String whiteSymbol;
@@ -48,6 +48,6 @@ public enum PieceType {
                 return pt;
             }
         }
-        throw new exceptions.InvalidParameterException("Número de piezas");
+        throw new exceptions.InvalidParameterException("Invalid piece number");
     }
 }

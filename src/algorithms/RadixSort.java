@@ -7,31 +7,32 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class RadixSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        int max = list.stream().mapToInt(p -> p.getType().getValue()).max().orElse(0);
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        int max = chessPieces.stream().mapToInt(p -> p.getType().getValue()).max().orElse(0);
         for (int exp = 1; max / exp > 0; exp *= 10) {
-            countSort(list, exp, speed, board);
+            countSort(chessPieces, exp, pauseDuration, board);
         }
     }
 
-    private void countSort(List<ChessPiece> list, int exp, int speed, ChessBoard board) throws InterruptedException {
-        List<ChessPiece> output = new ArrayList<>(list);
+    private void countSort(List<ChessPiece> chessPieces, int exp, int pauseDuration, ChessBoard board) throws InterruptedException {
+        ArrayList<ChessPiece> output = new ArrayList<>(chessPieces);
         int[] count = new int[10];
-        for (ChessPiece p : list) {
+        for (ChessPiece p : chessPieces) {
             count[(p.getType().getValue() / exp) % 10]++;
         }
         for (int i = 1; i < 10; i++) {
             count[i] += count[i - 1];
         }
-        for (int i = list.size() - 1; i >= 0; i--) {
-            ChessPiece p = list.get(i);
+        for (int i = chessPieces.size() - 1; i >= 0; i--) {
+            ChessPiece p = chessPieces.get(i);
             output.set(count[(p.getType().getValue() / exp) % 10] - 1, p);
             count[(p.getType().getValue() / exp) % 10]--;
-            GameUtils.updateBoardAndSleep(board, output, speed);
+            GameUtils.updateBoardAndPause(board, output, pauseDuration);
         }
-        list.clear();
-        list.addAll(output);
+        chessPieces.clear();
+        chessPieces.addAll(output);
     }
 
     @Override
@@ -39,4 +40,5 @@ public class RadixSort implements SortingAlgorithm {
         return "Radix Sort";
     }
 }
+
 

@@ -11,21 +11,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class ChessGame {
-    private final SortingAlgorithm algorithm;
+    private final SortingAlgorithm sortingAlgorithm;
     private final ChessBoard board;
-    private final int speed;
-    private final List<ChessPiece> pieces;
+    private final int pauseDuration;
+    private final List<ChessPiece> chessPieces;
 
-    public ChessGame(SortingAlgorithm algorithm, ListType listType, PieceColor color, int pieceCount, int speed) {
-        this.algorithm = algorithm;
+    public ChessGame(SortingAlgorithm sortingAlgorithm, ListType listType, PieceColor color, int pieceCount, int pauseDuration) {
+        this.sortingAlgorithm = sortingAlgorithm;
         this.board = new ChessBoard(listType);
-        this.speed = speed;
-        List<ChessPiece> generatedPieces = generatePieces(color, pieceCount);
-        this.pieces = board.placePiecesRandomly(generatedPieces);
+        this.pauseDuration = pauseDuration;
+        List<ChessPiece> generatedPieces = generateChessPieces(color, pieceCount);
+        this.chessPieces = board.placePiecesRandomly(generatedPieces);
     }
 
-    private List<ChessPiece> generatePieces(PieceColor color, int pieceCount) {
-        List<ChessPiece> pieces = new ArrayList<>();
+    private List<ChessPiece> generateChessPieces(PieceColor color, int pieceCount) {
+        ArrayList<ChessPiece> pieces = new ArrayList<>();
         switch (pieceCount) {
             case 1:
                 pieces.add(new ChessPiece(PieceType.KING, color));
@@ -37,56 +37,56 @@ public class ChessGame {
             case 4:
                 pieces.add(new ChessPiece(PieceType.KING, color));
                 pieces.add(new ChessPiece(PieceType.QUEEN, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_I, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_II, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_ONE, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_TWO, color));
                 break;
             case 6:
                 pieces.add(new ChessPiece(PieceType.KING, color));
                 pieces.add(new ChessPiece(PieceType.QUEEN, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_I, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_II, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_I, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_II, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_ONE, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_TWO, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_ONE, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_TWO, color));
                 break;
             case 8:
                 pieces.add(new ChessPiece(PieceType.KING, color));
                 pieces.add(new ChessPiece(PieceType.QUEEN, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_I, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_II, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_I, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_II, color));
-                pieces.add(new ChessPiece(PieceType.ROOK_I, color));
-                pieces.add(new ChessPiece(PieceType.ROOK_II, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_ONE, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_TWO, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_ONE, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_TWO, color));
+                pieces.add(new ChessPiece(PieceType.ROOK_ONE, color));
+                pieces.add(new ChessPiece(PieceType.ROOK_TWO, color));
                 break;
             case 10:
-                pieces.add(new ChessPiece(PieceType.PAWN_1, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_2, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_3, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_4, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_5, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_6, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_7, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_8, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_1, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_2, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_ONE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_TWO, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_THREE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_FOUR, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_FIVE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_SIX, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_SEVEN, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_EIGHT, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_ONE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_TWO, color));
                 break;
             case 16:
                 pieces.add(new ChessPiece(PieceType.KING, color));
                 pieces.add(new ChessPiece(PieceType.QUEEN, color));
-                pieces.add(new ChessPiece(PieceType.ROOK_I, color));
-                pieces.add(new ChessPiece(PieceType.ROOK_II, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_I, color));
-                pieces.add(new ChessPiece(PieceType.BISHOP_II, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_I, color));
-                pieces.add(new ChessPiece(PieceType.KNIGHT_II, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_1, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_2, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_3, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_4, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_5, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_6, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_7, color));
-                pieces.add(new ChessPiece(PieceType.PAWN_8, color));
+                pieces.add(new ChessPiece(PieceType.ROOK_ONE, color));
+                pieces.add(new ChessPiece(PieceType.ROOK_TWO, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_ONE, color));
+                pieces.add(new ChessPiece(PieceType.BISHOP_TWO, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_ONE, color));
+                pieces.add(new ChessPiece(PieceType.KNIGHT_TWO, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_ONE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_TWO, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_THREE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_FOUR, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_FIVE, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_SIX, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_SEVEN, color));
+                pieces.add(new ChessPiece(PieceType.PAWN_EIGHT, color));
                 break;
             default:
                 for (int i = 1; i <= pieceCount; i++) {
@@ -99,7 +99,7 @@ public class ChessGame {
     }
 
     public void run() throws InterruptedException {
-        System.out.println("\nTipo: " + (board.getListType() == ListType.NUMERIC ? "Numérico" : "Caracter") );
+        System.out.println("\nTipo: " + (board.getListType() == ListType.NUMERIC ? "Numérico" : "Caracter"));
 
         System.out.println("\n-------------------------------------------------");
         System.out.println("           Tablero Inicial");
@@ -107,26 +107,26 @@ public class ChessGame {
         Renderer.displayBoard(board);
 
         List<ChessPiece> compactedPieces = board.compactPieces();
-        pieces.clear();
-        pieces.addAll(compactedPieces);
-        board.updateLayout(pieces);
+        chessPieces.clear();
+        chessPieces.addAll(compactedPieces);
+        board.updateLayout(chessPieces);
 
         System.out.println("\nValores:");
-        System.out.println(GameUtils.listToString(pieces, board.getListType()));
+        System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
 
         long startTime = System.currentTimeMillis();
-        algorithm.sort(pieces, speed, board);
+        sortingAlgorithm.sort(chessPieces, pauseDuration, board);
         long endTime = System.currentTimeMillis();
 
         System.out.println("\n-------------------------------------------------");
         System.out.println("           Tablero Final");
         System.out.println("-------------------------------------------------");
         System.out.println("\nOrdenamiento:");
-        System.out.println(GameUtils.listToString(pieces, board.getListType()));
+        System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
 
-        System.out.println("\nAlgoritmo :" + algorithm.getName());
+        System.out.println("\nAlgoritmo: " + sortingAlgorithm.getName());
         System.out.println("\nTiempo total: " + (endTime - startTime) + " ms");
     }
 

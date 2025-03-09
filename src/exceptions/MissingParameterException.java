@@ -1,6 +1,5 @@
 package exceptions;
 
-
 public class MissingParameterException extends RuntimeException {
     private final String parameterName;
 

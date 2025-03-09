@@ -6,18 +6,19 @@ import utils.GameUtils;
 import java.util.List;
 
 public class InsertionSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        for (int i = 1; i < list.size(); i++) {
-            ChessPiece key = list.get(i);
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        for (int i = 1; i < chessPieces.size(); i++) {
+            ChessPiece keyPiece = chessPieces.get(i);
             int j = i - 1;
-            while (j >= 0 && list.get(j).compareTo(key) > 0) {
-                list.set(j + 1, list.get(j));
+            while (j >= 0 && chessPieces.get(j).compareTo(keyPiece) > 0) {
+                chessPieces.set(j + 1, chessPieces.get(j));
                 j--;
-                GameUtils.updateBoardAndSleep(board, list, speed);
+                GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
             }
-            list.set(j + 1, key);
-            GameUtils.updateBoardAndSleep(board, list, speed);
+            chessPieces.set(j + 1, keyPiece);
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
     }
 
@@ -26,3 +27,4 @@ public class InsertionSort implements SortingAlgorithm {
         return "Insertion Sort";
     }
 }
+

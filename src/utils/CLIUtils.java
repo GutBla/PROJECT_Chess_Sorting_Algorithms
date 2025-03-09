@@ -1,8 +1,8 @@
 package utils;
 
+import enums.SortingAlgorithmType;
 import enums.ListType;
 import enums.PieceColor;
-import enums.SortingAlgorithmType;
 import exceptions.ExceptionHandler;
 import exceptions.InvalidParameterException;
 import exceptions.MissingParameterException;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class CLIUtils {
 
-    public static String getParamValue(ArrayList<String> params, String key) {
+    public static String getParameterValue(ArrayList<String> params, String key) {
         for (String param : params) {
             if (param.startsWith(key + "=")) {
                 String[] parts = param.split("=", 2);
@@ -26,39 +26,42 @@ public class CLIUtils {
 
     public static ParsedParams parseParams(String[] args) {
         ArrayList<String> params = new ArrayList<>(Arrays.asList(args));
-        String algoritmoStr, tipoListaStr, colorStr, piezaStr, velocidadStr;
-        algoritmoStr = tipoListaStr = colorStr = piezaStr = velocidadStr = "";
+        String algorithmStr = "";
+        String listTypeStr = "";
+        String colorStr = "";
+        String pieceCountStr = "";
+        String speedStr = "";
 
-        SortingAlgorithmType algorithmType = null;
+        SortingAlgorithmType sortingAlgorithmType = null;
         ListType listType = null;
-        PieceColor color = null;
+        PieceColor pieceColor = null;
         int pieceCount = -1;
-        int speed = -1;
+        int pauseDuration = -1;
 
         try {
-            String val = getParamValue(params, "a");
-            algorithmType = SortingAlgorithmType.fromCode(val);
-            algoritmoStr = "[" + algorithmType.getAlgorithm().getName() + "]";
+            String val = getParameterValue(params, "a");
+            sortingAlgorithmType = SortingAlgorithmType.fromCode(val);
+            algorithmStr = "[" + sortingAlgorithmType.getAlgorithm().getName() + "]";
         } catch (MissingParameterException e) {
-            algoritmoStr = "[No presente]";
+            algorithmStr = "[No presente]";
         } catch (InvalidParameterException e) {
-            algoritmoStr = "[Invalido]";
+            algorithmStr = "[Invalido]";
         }
 
         try {
-            String val = getParamValue(params, "t");
+            String val = getParameterValue(params, "t");
             listType = ListType.fromCode(val);
-            tipoListaStr = "[" + (listType == ListType.NUMERIC ? "Numérico" : "Caracter") + "]";
+            listTypeStr = "[" + (listType == ListType.NUMERIC ? "Numérico" : "Caracter") + "]";
         } catch (MissingParameterException e) {
-            tipoListaStr = "[No presente]";
+            listTypeStr = "[No presente]";
         } catch (InvalidParameterException e) {
-            tipoListaStr = "[Invalido]";
+            listTypeStr = "[Invalido]";
         }
 
         try {
-            String val = getParamValue(params, "c");
-            color = PieceColor.fromCode(val);
-            colorStr = "[" + (color == PieceColor.WHITE ? "Blancas" : "Negras") + "]";
+            String val = getParameterValue(params, "c");
+            pieceColor = PieceColor.fromCode(val);
+            colorStr = "[" + (pieceColor == PieceColor.WHITE ? "Blancas" : "Negras") + "]";
         } catch (MissingParameterException e) {
             colorStr = "[No presente]";
         } catch (InvalidParameterException e) {
@@ -66,75 +69,75 @@ public class CLIUtils {
         }
 
         try {
-            String val = getParamValue(params, "r");
+            String val = getParameterValue(params, "r");
             pieceCount = Integer.parseInt(val);
             if (pieceCount == 0) {
-                piezaStr = "[No presente]";
+                pieceCountStr = "[No presente]";
             } else if (pieceCount == 1 || pieceCount == 2 || pieceCount == 4 ||
                     pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16) {
-                piezaStr = "[" + pieceCount + "]";
+                pieceCountStr = "[" + pieceCount + "]";
             } else {
-                piezaStr = "[Invalido]";
+                pieceCountStr = "[Invalido]";
             }
         } catch (MissingParameterException e) {
-            piezaStr = "[No presente]";
+            pieceCountStr = "[No presente]";
         } catch (NumberFormatException e) {
-            piezaStr = "[Invalido]";
+            pieceCountStr = "[Invalido]";
         }
 
         try {
-            String val = getParamValue(params, "s");
-            speed = Integer.parseInt(val);
-            if (speed == 0) {
-                velocidadStr = "[No presente]";
-            } else if (speed >= 100 && speed <= 1000) {
-                velocidadStr = "[" + speed + "] ms";
+            String val = getParameterValue(params, "s");
+            pauseDuration = Integer.parseInt(val);
+            if (pauseDuration == 0) {
+                speedStr = "[No presente]";
+            } else if (pauseDuration >= 100 && pauseDuration <= 1000) {
+                speedStr = "[" + pauseDuration + "] ms";
             } else {
-                velocidadStr = "[Invalido]";
+                speedStr = "[Invalido]";
             }
         } catch (MissingParameterException e) {
-            velocidadStr = "[No presente]";
+            speedStr = "[No presente]";
         } catch (NumberFormatException e) {
-            velocidadStr = "[Invalido]";
+            speedStr = "[Invalido]";
         }
 
-        if (algoritmoStr.equals("[Invalido]") || tipoListaStr.equals("[Invalido]") ||
-                colorStr.equals("[Invalido]") || piezaStr.equals("[Invalido]") ||
-                velocidadStr.equals("[Invalido]") || algoritmoStr.equals("[No presente]") ||
-                tipoListaStr.equals("[No presente]") || colorStr.equals("[No presente]") ||
-                piezaStr.equals("[No presente]") || velocidadStr.equals("[No presente]")) {
-            ExceptionHandler.handleParameterError(algoritmoStr, tipoListaStr, colorStr, piezaStr, velocidadStr);
+        if (algorithmStr.equals("[Invalido]") || listTypeStr.equals("[Invalido]") ||
+                colorStr.equals("[Invalido]") || pieceCountStr.equals("[Invalido]") ||
+                speedStr.equals("[Invalido]") || algorithmStr.equals("[No presente]") ||
+                listTypeStr.equals("[No presente]") || colorStr.equals("[No presente]") ||
+                pieceCountStr.equals("[No presente]") || speedStr.equals("[No presente]")) {
+            ExceptionHandler.handleParameterError(algorithmStr, listTypeStr, colorStr, pieceCountStr, speedStr);
         }
 
-        validateParams(pieceCount, speed);
-        return new ParsedParams(algorithmType, listType, color, pieceCount, speed);
+        validateParams(pieceCount, pauseDuration);
+        return new ParsedParams(sortingAlgorithmType, listType, pieceColor, pieceCount, pauseDuration);
     }
 
-    private static void validateParams(int pieceCount, int speed) {
+    private static void validateParams(int pieceCount, int pauseDuration) {
         if (!(pieceCount == 1 || pieceCount == 2 || pieceCount == 4 ||
                 pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16)
-                || speed < 100 || speed > 1000) {
+                || pauseDuration < 100 || pauseDuration > 1000) {
             ExceptionHandler.handleParameterError("[Invalido]", "[Invalido]", "[Invalido]", "[Invalido]", "[Invalido]");
         }
     }
 
     public static class ParsedParams {
-        private final SortingAlgorithmType algorithmType;
+        private final SortingAlgorithmType sortingAlgorithm;
         private final ListType listType;
         private final PieceColor color;
         private final int pieceCount;
         private final int speed;
 
-        public ParsedParams(SortingAlgorithmType algorithmType, ListType listType, PieceColor color, int pieceCount, int speed) {
-            this.algorithmType = algorithmType;
+        public ParsedParams(SortingAlgorithmType sortingAlgorithm, ListType listType, PieceColor color, int pieceCount, int speed) {
+            this.sortingAlgorithm = sortingAlgorithm;
             this.listType = listType;
             this.color = color;
             this.pieceCount = pieceCount;
             this.speed = speed;
         }
 
-        public SortingAlgorithmType getAlgorithmType() {
-            return algorithmType;
+        public SortingAlgorithmType getSortingAlgorithm() {
+            return sortingAlgorithm;
         }
 
         public ListType getListType() {

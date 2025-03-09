@@ -7,38 +7,40 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MergeSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        mergeSort(list, 0, list.size() - 1, speed, board);
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        mergeSort(chessPieces, 0, chessPieces.size() - 1, pauseDuration, board);
     }
 
-    private void mergeSort(List<ChessPiece> list, int l, int r, int speed, ChessBoard board) throws InterruptedException {
-        if (l < r) {
-            int m = l + (r - l) / 2;
-            mergeSort(list, l, m, speed, board);
-            mergeSort(list, m + 1, r, speed, board);
-            merge(list, l, m, r, speed, board);
+    private void mergeSort(List<ChessPiece> chessPieces, int left, int right, int pauseDuration, ChessBoard board) throws InterruptedException {
+        if (left < right) {
+            int middle = left + (right - left) / 2;
+            mergeSort(chessPieces, left, middle, pauseDuration, board);
+            mergeSort(chessPieces, middle + 1, right, pauseDuration, board);
+            merge(chessPieces, left, middle, right, pauseDuration, board);
         }
     }
 
-    private void merge(List<ChessPiece> list, int l, int m, int r, int speed, ChessBoard board) throws InterruptedException {
-        List<ChessPiece> left = new ArrayList<>(list.subList(l, m + 1));
-        List<ChessPiece> right = new ArrayList<>(list.subList(m + 1, r + 1));
-        int i = 0, j = 0, k = l;
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i).compareTo(right.get(j)) <= 0)
-                list.set(k++, left.get(i++));
-            else
-                list.set(k++, right.get(j++));
-            GameUtils.updateBoardAndSleep(board, list, speed);
+    private void merge(List<ChessPiece> chessPieces, int left, int middle, int right, int pauseDuration, ChessBoard board) throws InterruptedException {
+        ArrayList<ChessPiece> leftList = new ArrayList<>(chessPieces.subList(left, middle + 1));
+        ArrayList<ChessPiece> rightList = new ArrayList<>(chessPieces.subList(middle + 1, right + 1));
+        int i = 0, j = 0, k = left;
+        while (i < leftList.size() && j < rightList.size()) {
+            if (leftList.get(i).compareTo(rightList.get(j)) <= 0) {
+                chessPieces.set(k++, leftList.get(i++));
+            } else {
+                chessPieces.set(k++, rightList.get(j++));
+            }
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
-        while (i < left.size()) {
-            list.set(k++, left.get(i++));
-            GameUtils.updateBoardAndSleep(board, list, speed);
+        while (i < leftList.size()) {
+            chessPieces.set(k++, leftList.get(i++));
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
-        while (j < right.size()) {
-            list.set(k++, right.get(j++));
-            GameUtils.updateBoardAndSleep(board, list, speed);
+        while (j < rightList.size()) {
+            chessPieces.set(k++, rightList.get(j++));
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         }
     }
 

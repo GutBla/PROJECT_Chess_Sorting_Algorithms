@@ -6,35 +6,32 @@ import utils.GameUtils;
 import java.util.List;
 
 public class QuickSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        quickSort(list, 0, list.size() - 1, speed, board);
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        quickSort(chessPieces, 0, chessPieces.size() - 1, pauseDuration, board);
     }
 
-    private void quickSort(List<ChessPiece> list, int low, int high, int speed, ChessBoard board) throws InterruptedException {
+    private void quickSort(List<ChessPiece> chessPieces, int low, int high, int pauseDuration, ChessBoard board) throws InterruptedException {
         if (low < high) {
-            int pi = partition(list, low, high, speed, board);
-            quickSort(list, low, pi - 1, speed, board);
-            quickSort(list, pi + 1, high, speed, board);
+            int partitionIndex = partition(chessPieces, low, high, pauseDuration, board);
+            quickSort(chessPieces, low, partitionIndex - 1, pauseDuration, board);
+            quickSort(chessPieces, partitionIndex + 1, high, pauseDuration, board);
         }
     }
 
-    private int partition(List<ChessPiece> list, int low, int high, int speed, ChessBoard board) throws InterruptedException {
-        ChessPiece pivot = list.get(high);
+    private int partition(List<ChessPiece> chessPieces, int low, int high, int pauseDuration, ChessBoard board) throws InterruptedException {
+        ChessPiece pivot = chessPieces.get(high);
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            if (list.get(j).compareTo(pivot) < 0) {
+            if (chessPieces.get(j).compareTo(pivot) < 0) {
                 i++;
-                ChessPiece temp = list.get(i);
-                list.set(i, list.get(j));
-                list.set(j, temp);
-                GameUtils.updateBoardAndSleep(board, list, speed);
+                GameUtils.swapChessPieces(chessPieces, i, j);
+                GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
             }
         }
-        ChessPiece temp = list.get(i + 1);
-        list.set(i + 1, list.get(high));
-        list.set(high, temp);
-        GameUtils.updateBoardAndSleep(board, list, speed);
+        GameUtils.swapChessPieces(chessPieces, i + 1, high);
+        GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
         return i + 1;
     }
 

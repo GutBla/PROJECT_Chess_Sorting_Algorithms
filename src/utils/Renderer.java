@@ -4,7 +4,6 @@ import enums.ListType;
 import enums.PieceColor;
 import model.ChessBoard;
 import model.ChessPiece;
-import java.util.List;
 
 public class Renderer {
 
@@ -31,7 +30,6 @@ public class Renderer {
         System.out.println("           | |____| |  | | |____ ____) |___) |");
         System.out.println("            \\_____|_|  |_|______|_____/_____/ ");
     }
-
 
     public static void displayBoard(ChessBoard board) {
         System.out.println(getBoardDesign(board));

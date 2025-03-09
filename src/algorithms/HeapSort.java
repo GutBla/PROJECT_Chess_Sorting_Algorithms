@@ -6,33 +6,35 @@ import utils.GameUtils;
 import java.util.List;
 
 public class HeapSort implements SortingAlgorithm {
+
     @Override
-    public void sort(List<ChessPiece> list, int speed, ChessBoard board) throws InterruptedException {
-        int n = list.size();
+    public void sort(List<ChessPiece> chessPieces, int pauseDuration, ChessBoard board) throws InterruptedException {
+        int n = chessPieces.size();
         for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(list, n, i, speed, board);
+            heapify(chessPieces, n, i, pauseDuration, board);
         }
         for (int i = n - 1; i > 0; i--) {
-            ChessPiece temp = list.get(0);
-            list.set(0, list.get(i));
-            list.set(i, temp);
-            GameUtils.updateBoardAndSleep(board, list, speed);
-            heapify(list, i, 0, speed, board);
+            GameUtils.swapChessPieces(chessPieces, 0, i);
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
+            heapify(chessPieces, i, 0, pauseDuration, board);
         }
     }
 
-    private void heapify(List<ChessPiece> list, int n, int i, int speed, ChessBoard board) throws InterruptedException {
-        int largest = i, l = 2 * i + 1, r = 2 * i + 2;
-        if (l < n && list.get(l).compareTo(list.get(largest)) > 0)
-            largest = l;
-        if (r < n && list.get(r).compareTo(list.get(largest)) > 0)
-            largest = r;
+    private void heapify(List<ChessPiece> chessPieces, int n, int i, int pauseDuration, ChessBoard board) throws InterruptedException {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && chessPieces.get(left).compareTo(chessPieces.get(largest)) > 0) {
+            largest = left;
+        }
+        if (right < n && chessPieces.get(right).compareTo(chessPieces.get(largest)) > 0) {
+            largest = right;
+        }
         if (largest != i) {
-            ChessPiece temp = list.get(i);
-            list.set(i, list.get(largest));
-            list.set(largest, temp);
-            GameUtils.updateBoardAndSleep(board, list, speed);
-            heapify(list, n, largest, speed, board);
+            GameUtils.swapChessPieces(chessPieces, i, largest);
+            GameUtils.updateBoardAndPause(board, chessPieces, pauseDuration);
+            heapify(chessPieces, n, largest, pauseDuration, board);
         }
     }
 
