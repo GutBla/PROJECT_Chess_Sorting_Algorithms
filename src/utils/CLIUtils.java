@@ -1,16 +1,16 @@
 package utils;
 
-import enums.SortingAlgorithmType;
 import enums.ListType;
 import enums.PieceColor;
+import enums.SortingAlgorithmType;
 import exceptions.InvalidParameterException;
 import exceptions.MissingParameterException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import utils.Constants;
 
 public class CLIUtils {
 
@@ -71,6 +71,7 @@ public class CLIUtils {
                 (Integer) results.get("s")
         );
     }
+
 
     private static List<String> normalizeParams(String[] args) {
         List<String> normalizedParams = new ArrayList<>();
