@@ -1,0 +1,220 @@
+@startuml
+class Main {
+    +main(args: String[]) : void
+}
+
+class GameConfig {
+    +startGame(args: String[]) : void
+    -parseArguments(args: String[]) : void
+    -validateParameters() : void
+}
+
+class SortingAlgorithm {
+    <<interface>>
+    +sort(list: List<int>) : List<int>
+}
+
+class BubbleSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class CountingSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class HeapSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class InsertionSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class MergeSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class QuickSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class RadixSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class SelectionSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class SortingAlgorithmFactory {
+    +createAlgorithm(type: SortingAlgorithmType) : SortingAlgorithm
+}
+
+class ChessBoard {
+    +getGrid() : ChessCell[][]
+    +updateLayout(pieces: List<ChessPiece>) : void
+    -grid: ChessCell[][]
+}
+
+class ChessCell {
+    +getPiece() : ChessPiece
+    -piece: ChessPiece
+}
+
+class ChessPiece {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+    -symbol: String
+    -color: PieceColor
+    -position: ChessCell
+}
+
+class Bishop {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class King {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Knight {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Pawn {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Queen {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Rook {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class ChessGame {
+    +start() : void
+    +movePiece(from: ChessCell, to: ChessCell) : void
+    -currentPlayer: PieceColor
+    -board: ChessBoard
+}
+
+class Renderer {
+    +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int) : void
+    +printTitle() : void
+    +displayBoard(board: ChessBoard) : void
+    -formatWithColor(text: String, color: String) : String
+}
+
+class GameUtils {
+    +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int) : void
+    +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int) : void
+    +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType) : String
+    -formatList(chessPieces: List<ChessPiece>, listType: ListType) : String
+}
+
+class ConsoleColor {
+    +MORADO : String
+    +VERDE : String
+    +AMARILLO : String
+    +AZUL : String
+    +ROJO : String
+    +NARANJA : String
+    +BLACK : String
+    +WHITE : String
+    +CYAN : String
+    +RESET : String
+}
+
+class MetricsManager {
+    +getInstance() : MetricsManager
+    +getStepCounter() : StepCounter
+    +getTimeCounter() : TimeCounter
+    -stepCounter: StepCounter
+    -timeCounter: TimeCounter
+}
+
+class StepCounter {
+    +increment() : void
+    -count: int
+}
+
+class TimeCounter {
+    +start() : void
+    +stop() : void
+    +getTotalTime() : String
+    -startTime: long
+    -endTime: long
+}
+
+class InvalidParameterException {
+    +InvalidParameterException(message: String) : void
+    -message: String
+}
+
+class MissingParameterException {
+    +MissingParameterException(message: String) : void
+    -message: String
+}
+
+class ListType {
+    <<enumeration>>
+    +NUMERIC
+    +CHARACTER
+}
+
+class PieceColor {
+    <<enumeration>>
+    +WHITE
+    +BLACK
+}
+
+class SortingAlgorithmType {
+    <<enumeration>>
+    +BUBBLE
+    +INSERTION
+    +MERGE
+    +QUICK
+    +RADIX
+    +SELECTION
+    +HEAP
+    +COUNTING
+}
+
+Main --> GameConfig
+GameConfig --> SortingAlgorithmFactory
+SortingAlgorithmFactory --> SortingAlgorithm
+SortingAlgorithm <|.. BubbleSort
+SortingAlgorithm <|.. CountingSort
+SortingAlgorithm <|.. HeapSort
+SortingAlgorithm <|.. InsertionSort
+SortingAlgorithm <|.. MergeSort
+SortingAlgorithm <|.. QuickSort
+SortingAlgorithm <|.. RadixSort
+SortingAlgorithm <|.. SelectionSort
+ChessBoard --> ChessCell
+ChessCell --> ChessPiece
+ChessPiece <|-- Bishop
+ChessPiece <|-- King
+ChessPiece <|-- Knight
+ChessPiece <|-- Pawn
+ChessPiece <|-- Queen
+ChessPiece <|-- Rook
+ChessBoard --> ChessGame
+Renderer --> ChessBoard
+GameUtils --> ChessBoard
+GameUtils --> ChessPiece
+GameUtils --> Renderer
+MetricsManager --> StepCounter
+MetricsManager --> TimeCounter
+InvalidParameterException --> GameUtils
+MissingParameterException --> GameUtils
+ConsoleColor --> Renderer
+@enduml

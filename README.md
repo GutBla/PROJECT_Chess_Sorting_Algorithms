@@ -5,6 +5,30 @@
 
 # Algoritmos de Ordenamiento para Ajedrez
 
+## Características
+
+Simulación interactiva en CLI
+
+- Implementación de 8 algoritmos de ordenamiento
+- Modelado POO de piezas de ajedrez
+- Generación aleatoria de configuraciones válidas
+- Medición de tiempo de ejecución
+- Visualización paso a paso con control de velocidad
+
+## Requisitos
+
+- Java JDK 17+
+- Maven 3.8+
+- Git 2.3+
+
+## Instalación
+
+Clona el repositorio:
+
+```bash
+git clone https://github.com/GutBla/PROJECT_Chess_Sorting_Algorithms.git
+cd PROJECT_Chess_Sorting_Algorithms
+```
 ## ¿Qué es el Ajedrez?
 
 El ajedrez es un juego de estrategia de mesa que se juega entre dos personas. Se desarrolla en un tablero de 8x8 casillas y cada jugador cuenta con un conjunto de 16 piezas, cada una con movimientos y funciones específicas. El objetivo principal del juego es capturar al rey del oponente mediante una serie de movimientos estratégicos.
@@ -89,7 +113,7 @@ El tablero de ajedrez es una cuadrícula de 8x8 casillas alternadas entre colore
 Los algoritmos de ordenamiento son procedimientos diseñados para organizar un conjunto de elementos en un orden determinado, ya sea ascendente o descendente. Estos algoritmos tienen aplicaciones en informática, bases de datos y en este caso, en la organización de las piezas de ajedrez en un tablero.
 
 > [!WARNING]
-Algoritmos de Ordenamiento (a):
+> Algoritmos de Ordenamiento (a):
 > 
 > - **Valores Válidos:** s, b , i, m, q, h, c, r.
 > - **Validación:** Si no es uno de los valores validos, se considera **inválido**.
@@ -148,7 +172,7 @@ Ordena los números considerando sus dígitos de menor a mayor peso.
 En el proyecto se pueden representar las piezas del ajedrez usando dos tipos de listas:
 
 > [!WARNING]
-Tipos de Listas (t):
+> Tipos de Listas (t):
 > 
 > - **Valores Válidos:** n , c
 > - **Validación:** Si no es uno de los valores validos, se considera **inválido**
@@ -200,7 +224,7 @@ p. Peón 8
 Las piezas pueden tener dos colores:
 
 > [!WARNING]
-Color de Piezas (c):
+> Color de Piezas (c):
 > 
 > - **Valores Válidos:** b , w
 > - **Validación:** Si no es uno de los valores validos, se considera **inválido**
@@ -218,7 +242,7 @@ Representan el jugador de las piezas claras. `c=w` o `c+W`
 Determina cuántas piezas se colocan en el tablero:
 
 > [!WARNING]
-Cantidad de Piezas (r):
+> Cantidad de Piezas (r):
 > 
 > - **Valores Válidos:** 1, 2, 3, 4, 6, 8, 10, 16
 > - **Validación:** Si no es uno de los valores validos, se considera **inválido**
@@ -239,7 +263,7 @@ Cantidad de Piezas (r):
 La velocidad `s` representa la pausa en milisegundos entre cada paso de ejecución de los algoritmos, variando entre 100 y 1000 ms.
 
 > [!WARNING]
-Cantidad de Piezas (r):
+> Cantidad de Piezas (r):
 > 
 > - **Valores Válidos (Rango):** (100 - 1000)
 > - **Validación:** Si no es uno de los valores validos dentro del rango, se considera **inválido**
@@ -248,6 +272,16 @@ Cantidad de Piezas (r):
 ## Simulación y Resultados
 
 Este documento proporciona una base académica y estructurada para el desarrollo del proyecto Capstone Chess, asegurando una explicación detallada y ordenada de los elementos involucrados.
+
+### Parámetros de Ejecución
+
+| Parámetro | Valores                                | Descripción                           |
+|-----------|----------------------------------------|---------------------------------------|
+| `a`       | `B`, `S`, `I`, `M`, `Q`, `H`, `C`, `R` | Algoritmo de ordenamiento             |
+| `t`       | `N`, `C`                               | Tipo de lista (numérica o caracteres) |
+| `o`       | `B`, `W`                               | Color de piezas (negras o blancas)    |
+| `r`       | `1`, `2`, `4`, `6`, `8`, `10`, `16`    | Número de piezas a ordenar            |
+| `s`       | `100` a `1000`                         | Velocidad de visualización (ms)       |
 
 **Configuración de Simulación:**
 
@@ -337,232 +371,491 @@ Tiempo total: [4249] ms
 
 ## Workflow (Flujo de trabajo)
 
+![Capstone_Chess_Diagrama.png](images/Capstone_Chess_Diagrama.png)
+
 ```bash
 ---
 config:
-  theme: default
+  theme: base
 ---
 classDiagram
-direction TB
     class Main {
-	    +main(String[] args)
+        +main(args: String[]) : void
     }
-    class SortingAlgorithm {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-    }
-    class BubbleSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-    }
-    class CountingSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-    }
-    class HeapSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-	    -heapify(List~ChessPiece~, int, int, int, ChessBoard) throws InterruptedException
-    }
-    class InsertionSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-    }
-    class MergeSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-	    -mergeSort(List~ChessPiece~, int, int, int, ChessBoard) throws InterruptedException
-	    -merge(List~ChessPiece~, int, int, int, int, ChessBoard) throws InterruptedException
-    }
-    class QuickSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-	    -quickSort(List~ChessPiece~, int, int, int, ChessBoard) throws InterruptedException
-	    -partition(List~ChessPiece~, int, int, int, ChessBoard) throws InterruptedException
-    }
-    class RadixSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-	    -countSort(List~ChessPiece~, int, int, ChessBoard) throws InterruptedException
-    }
-    class SelectionSort {
-	    +sort(List~ChessPiece~, int, ChessBoard) throws InterruptedException
-	    +getName() : String
-    }
-    class SortingAlgorithmFactory {
-	    +getAlgorithm(String) : SortingAlgorithm
-    }
+
     class GameConfig {
-	    +BOARD_SIZE : int
-	    +startGame(String[] args) throws InterruptedException
-	    -validateConfig(int, int) : void
+        +startGame(args: String[]) : void
+        -parseArguments(args: String[]) : void
+        -validateParameters() : void
     }
-    class ListType {
-	    +NUMERIC
-	    +CHARACTER
-	    -code : String
-	    +fromCode(String) : ListType
+
+    class SortingAlgorithm {
+        <<interface>>
+        +sort(list: List<int>) : List<int>
     }
-    class PieceColor {
-	    +WHITE
-	    +BLACK
-	    -code : String
-	    +fromCode(String) : PieceColor
+
+    class BubbleSort {
+        +sort(list: List<int>) : List<int>
     }
-    class PieceType {
-	    +KING
-	    +QUEEN
-	    +ROOK_I
-	    +ROOK_II
-	    +BISHOP_I
-	    +BISHOP_II
-	    +KNIGHT_I
-	    +KNIGHT_II
-	    +PAWN_1
-	    +PAWN_2
-	    +PAWN_3
-	    +PAWN_4
-	    +PAWN_5
-	    +PAWN_6
-	    +PAWN_7
-	    +PAWN_8
-	    -value : int
-	    -whiteSymbol : String
-	    -blackSymbol : String
-	    -charValue : String
-	    +getValue() : int
-	    +getCharValue() : String
-	    +getSymbol(PieceColor) : String
-	    +fromValue(int) : PieceType
+
+    class CountingSort {
+        +sort(list: List<int>) : List<int>
     }
-    class SortingAlgorithmType {
-	    +BUBBLE_SORT
-	    +SELECTION_SORT
-	    +INSERTION_SORT
-	    +MERGE_SORT
-	    +QUICK_SORT
-	    +HEAP_SORT
-	    +COUNTING_SORT
-	    +RADIX_SORT
-	    -code : String
-	    -algorithm : SortingAlgorithm
-	    +getAlgorithm() : SortingAlgorithm
-	    +fromCode(String) : SortingAlgorithmType
+
+    class HeapSort {
+        +sort(list: List<int>) : List<int>
     }
+
+    class InsertionSort {
+        +sort(list: List<int>) : List<int>
+    }
+
+    class MergeSort {
+        +sort(list: List<int>) : List<int>
+    }
+
+    class QuickSort {
+        +sort(list: List<int>) : List<int>
+    }
+
+    class RadixSort {
+        +sort(list: List<int>) : List<int>
+    }
+
+    class SelectionSort {
+        +sort(list: List<int>) : List<int>
+    }
+
+    class SortingAlgorithmFactory {
+        +createAlgorithm(type: SortingAlgorithmType) : SortingAlgorithm
+    }
+
     class ChessBoard {
-	    -grid : ChessPiece[][]
-	    -listType : ListType
-	    +ChessBoard(ListType)
-	    +placePiecesRandomly(List~ChessPiece~) : void
-	    +updateLayout(List~ChessPiece~) : void
-	    +getListType() : ListType
-	    +getGrid() : ChessPiece[][]
-	    -clearBoard() : void
+        +getGrid() : ChessCell[][]
+        +updateLayout(pieces: List<ChessPiece>) : void
+        -grid: ChessCell[][]
     }
+
     class ChessCell {
-	    -row : int
-	    -column : int
-	    -piece : ChessPiece
-	    +ChessCell(int, int)
-	    +getRow() : int
-	    +getColumn() : int
-	    +getPiece() : ChessPiece
-	    +setPiece(ChessPiece) : void
+        +getPiece() : ChessPiece
+        -piece: ChessPiece
     }
-    class ChessGame {
-	    -algorithm : SortingAlgorithm
-	    -board : ChessBoard
-	    -speed : int
-	    -pieces : List~ChessPiece~
-	    +ChessGame(SortingAlgorithm, ListType, PieceColor, int, int)
-	    -generatePieces(PieceColor, int) : List~ChessPiece~
-	    +run() : void throws InterruptedException
-	    +getBoard() : ChessBoard
-    }
+
     class ChessPiece {
-	    -type : PieceType
-	    -color : PieceColor
-	    +ChessPiece(PieceType, PieceColor)
-	    +getSymbol() : String
-	    +getType() : PieceType
-	    +compareTo(ChessPiece) : int
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
+        -symbol: String
+        -color: PieceColor
+        -position: ChessCell
     }
-    class CLIUtils {
-	    +getAlgorithmType(ArrayList~String~) : SortingAlgorithmType
-	    +getListType(ArrayList~String~) : ListType
-	    +getPieceColor(ArrayList~String~) : PieceColor
-	    +getPieceCount(ArrayList~String~) : int
-	    +getSpeed(ArrayList~String~) : int
-	    -getParamValue(ArrayList~String~, String) : String
+
+    class Bishop {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
     }
-    class GameUtils {
-	    +updateBoardAndSleep(ChessBoard, List~ChessPiece~, int) throws InterruptedException
-	    +listToString(List~ChessPiece~, ListType) : String
+
+    class King {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
     }
+
+    class Knight {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
+    }
+
+    class Pawn {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
+    }
+
+    class Queen {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
+    }
+
+    class Rook {
+        +getSymbol() : String
+        +getDisplayValue(isNumeric: Boolean) : String
+    }
+
+    class ChessGame {
+        +start() : void
+        +movePiece(from: ChessCell, to: ChessCell) : void
+        -currentPlayer: PieceColor
+        -board: ChessBoard
+    }
+
     class Renderer {
-	    +printConfig(String, ListType, PieceColor, int, int) : void
-	    +displayBoard(ChessBoard) : void
-	    -getBoardDesign(ChessBoard) : String
+        +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int) : void
+        +printTitle() : void
+        +displayBoard(board: ChessBoard) : void
+        -formatWithColor(text: String, color: String) : String
     }
-    class Comparable {
+
+    class GameUtils {
+        +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int) : void
+        +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int) : void
+        +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType) : String
+        -formatList(chessPieces: List<ChessPiece>, listType: ListType) : String
     }
 
-	<<interface>> SortingAlgorithm
-	<<enumeration>> ListType
-	<<enumeration>> PieceColor
-	<<enumeration>> PieceType
-	<<enumeration>> SortingAlgorithmType
+    class ConsoleColor {
+        +MORADO : String
+        +VERDE : String
+        +AMARILLO : String
+        +AZUL : String
+        +ROJO : String
+        +NARANJA : String
+        +BLACK : String
+        +WHITE : String
+        +CYAN : String
+        +RESET : String
+    }
 
-    BubbleSort --|> SortingAlgorithm
-    CountingSort --|> SortingAlgorithm
-    HeapSort --|> SortingAlgorithm
-    InsertionSort --|> SortingAlgorithm
-    MergeSort --|> SortingAlgorithm
-    QuickSort --|> SortingAlgorithm
-    RadixSort --|> SortingAlgorithm
-    SelectionSort --|> SortingAlgorithm
-    Main --> GameConfig : uses
-    GameConfig --> CLI : uses
-    GameConfig --> Renderer : uses
-    GameConfig --> ChessGame : creates
-    ChessGame --> ChessBoard : uses
-    ChessGame --> ChessPiece : uses
-    ChessGame --> SortingAlgorithm : uses
-    SortingAlgorithmFactory --> SortingAlgorithmType : uses
-    SortingAlgorithmType --> SortingAlgorithm : creates
-    CLI ..> ListType
-    CLI ..> PieceColor
-    CLI ..> SortingAlgorithmType
-    GameUtils ..> Renderer
-    Renderer ..> ChessBoard
-    ChessPiece ..|> Comparable
+    class MetricsManager {
+        +getInstance() : MetricsManager
+        +getStepCounter() : StepCounter
+        +getTimeCounter() : TimeCounter
+        -stepCounter: StepCounter
+        -timeCounter: TimeCounter
+    }
 
-	class Main:::Ash
-	class SortingAlgorithm:::Ash
-	class GameConfig:::Peach
-	class PieceType:::Aqua
-	class ChessBoard:::Rose
-	class ChessGame:::Aqua
-	class ChessGame:::Pine
-	class ChessPiece:::Ash
-	class CLI:::Ash
-	class GameUtils:::Rose
-	class Renderer:::Aqua
-	class Comparable:::Rose
+    class StepCounter {
+        +increment() : void
+        -count: int
+    }
 
-	classDef Peach :, stroke-width:1px, stroke-dasharray:none, stroke:#FBB35A, fill:#FFEFDB, color:#8F632D
-	classDef Pine :, stroke-width:1px, stroke-dasharray:none, stroke:#254336, fill:#27654A, color:#FFFFFF
-	classDef Aqua :, stroke-width:1px, stroke-dasharray:none, stroke:#46EDC8, fill:#DEFFF8, color:#378E7A
-	classDef Ash :, stroke-width:1px, stroke-dasharray:none, stroke:#999999, fill:#EEEEEE, color:#000000
-	classDef Rose :,stroke-width:1px, stroke-dasharray:none, stroke:#FF5978, fill:#FFDFE5, color:#8E2236
+    class TimeCounter {
+        +start() : void
+        +stop() : void
+        +getTotalTime() : String
+        -startTime: long
+        -endTime: long
+    }
 
+    class InvalidParameterException {
+        +InvalidParameterException(message: String) : void
+        -message: String
+    }
+
+    class MissingParameterException {
+        +MissingParameterException(message: String) : void
+        -message: String
+    }
+
+    class ListType {
+        <<enumeration>>
+        +NUMERIC
+        +CHARACTER
+    }
+
+    class PieceColor {
+        <<enumeration>>
+        +WHITE
+        +BLACK
+    }
+
+    class SortingAlgorithmType {
+        <<enumeration>>
+        +BUBBLE
+        +INSERTION
+        +MERGE
+        +QUICK
+        +RADIX
+        +SELECTION
+        +HEAP
+        +COUNTING
+    }
+
+    Main --> GameConfig
+    GameConfig --> SortingAlgorithmFactory
+    SortingAlgorithmFactory --> SortingAlgorithm
+    SortingAlgorithm <|.. BubbleSort
+    SortingAlgorithm <|.. CountingSort
+    SortingAlgorithm <|.. HeapSort
+    SortingAlgorithm <|.. InsertionSort
+    SortingAlgorithm <|.. MergeSort
+    SortingAlgorithm <|.. QuickSort
+    SortingAlgorithm <|.. RadixSort
+    SortingAlgorithm <|.. SelectionSort
+    ChessBoard --> ChessCell
+    ChessCell --> ChessPiece
+    ChessPiece <|-- Bishop
+    ChessPiece <|-- King
+    ChessPiece <|-- Knight
+    ChessPiece <|-- Pawn
+    ChessPiece <|-- Queen
+    ChessPiece <|-- Rook
+    ChessBoard --> ChessGame
+    Renderer --> ChessBoard
+    GameUtils --> ChessBoard
+    GameUtils --> ChessPiece
+    GameUtils --> Renderer
+    MetricsManager --> StepCounter
+    MetricsManager --> TimeCounter
+    InvalidParameterException --> GameUtils
+    MissingParameterException --> GameUtils
+    ConsoleColor --> Renderer
 
 ```
 
+# Diagrama de Clases UML
 
-![Capstone_Chess_Diagrama.png](images/Capstone_Chess_Diagrama.png)
+![Class_Diagram_Chess.png](images/Class_Diagram_Chess.png)
+
+```
+@startuml
+class Main {
+    +main(args: String[]) : void
+}
+
+class GameConfig {
+    +startGame(args: String[]) : void
+    -parseArguments(args: String[]) : void
+    -validateParameters() : void
+}
+
+class SortingAlgorithm {
+    <<interface>>
+    +sort(list: List<int>) : List<int>
+}
+
+class BubbleSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class CountingSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class HeapSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class InsertionSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class MergeSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class QuickSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class RadixSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class SelectionSort {
+    +sort(list: List<int>) : List<int>
+}
+
+class SortingAlgorithmFactory {
+    +createAlgorithm(type: SortingAlgorithmType) : SortingAlgorithm
+}
+
+class ChessBoard {
+    +getGrid() : ChessCell[][]
+    +updateLayout(pieces: List<ChessPiece>) : void
+    -grid: ChessCell[][]
+}
+
+class ChessCell {
+    +getPiece() : ChessPiece
+    -piece: ChessPiece
+}
+
+class ChessPiece {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+    -symbol: String
+    -color: PieceColor
+    -position: ChessCell
+}
+
+class Bishop {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class King {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Knight {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Pawn {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Queen {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class Rook {
+    +getSymbol() : String
+    +getDisplayValue(isNumeric: Boolean) : String
+}
+
+class ChessGame {
+    +start() : void
+    +movePiece(from: ChessCell, to: ChessCell) : void
+    -currentPlayer: PieceColor
+    -board: ChessBoard
+}
+
+class Renderer {
+    +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int) : void
+    +printTitle() : void
+    +displayBoard(board: ChessBoard) : void
+    -formatWithColor(text: String, color: String) : String
+}
+
+class GameUtils {
+    +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int) : void
+    +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int) : void
+    +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType) : String
+    -formatList(chessPieces: List<ChessPiece>, listType: ListType) : String
+}
+
+class ConsoleColor {
+    +MORADO : String
+    +VERDE : String
+    +AMARILLO : String
+    +AZUL : String
+    +ROJO : String
+    +NARANJA : String
+    +BLACK : String
+    +WHITE : String
+    +CYAN : String
+    +RESET : String
+}
+
+class MetricsManager {
+    +getInstance() : MetricsManager
+    +getStepCounter() : StepCounter
+    +getTimeCounter() : TimeCounter
+    -stepCounter: StepCounter
+    -timeCounter: TimeCounter
+}
+
+class StepCounter {
+    +increment() : void
+    -count: int
+}
+
+class TimeCounter {
+    +start() : void
+    +stop() : void
+    +getTotalTime() : String
+    -startTime: long
+    -endTime: long
+}
+
+class InvalidParameterException {
+    +InvalidParameterException(message: String) : void
+    -message: String
+}
+
+class MissingParameterException {
+    +MissingParameterException(message: String) : void
+    -message: String
+}
+
+class ListType {
+    <<enumeration>>
+    +NUMERIC
+    +CHARACTER
+}
+
+class PieceColor {
+    <<enumeration>>
+    +WHITE
+    +BLACK
+}
+
+class SortingAlgorithmType {
+    <<enumeration>>
+    +BUBBLE
+    +INSERTION
+    +MERGE
+    +QUICK
+    +RADIX
+    +SELECTION
+    +HEAP
+    +COUNTING
+}
+
+Main --> GameConfig
+GameConfig --> SortingAlgorithmFactory
+SortingAlgorithmFactory --> SortingAlgorithm
+SortingAlgorithm <|.. BubbleSort
+SortingAlgorithm <|.. CountingSort
+SortingAlgorithm <|.. HeapSort
+SortingAlgorithm <|.. InsertionSort
+SortingAlgorithm <|.. MergeSort
+SortingAlgorithm <|.. QuickSort
+SortingAlgorithm <|.. RadixSort
+SortingAlgorithm <|.. SelectionSort
+ChessBoard --> ChessCell
+ChessCell --> ChessPiece
+ChessPiece <|-- Bishop
+ChessPiece <|-- King
+ChessPiece <|-- Knight
+ChessPiece <|-- Pawn
+ChessPiece <|-- Queen
+ChessPiece <|-- Rook
+ChessBoard --> ChessGame
+Renderer --> ChessBoard
+GameUtils --> ChessBoard
+GameUtils --> ChessPiece
+GameUtils --> Renderer
+MetricsManager --> StepCounter
+MetricsManager --> TimeCounter
+InvalidParameterException --> GameUtils
+MissingParameterException --> GameUtils
+ConsoleColor --> Renderer
+@enduml
+
+```
+
 ## Execution (Ejecución)
+
+Input (CLI):
+
+```bash
+a=b t=n c=w r=16 s=200
+```
+
+Output:
 
 ![Capstone_Chess_Ejecucion_1.png](images/Capstone_Chess_Ejecucion_1.png)
 
 ![Capstone_Chess_Ejecucion_2.png](images/Capstone_Chess_Ejecucion_2.png)
+
+Input (CLI):
+
+```bash
+
+```
+
+Output:
+![Capstone_Chess_Ejecucion_3.png](images/Capstone_Chess_Ejecucion_3.png)
+
+Input (CLI):
+
+```bash
+ a=x t=x c=x r=7 s=1
+```
+
+Output:
+![Capstone_Chess_Ejecucion_4.png](images/Capstone_Chess_Ejecucion_4.png)
