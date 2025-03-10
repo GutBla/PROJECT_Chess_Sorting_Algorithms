@@ -1,6 +1,7 @@
 package enums;
 
 import exceptions.InvalidParameterException;
+import utils.Constants;
 
 public enum ListType {
     NUMERIC("n"),
@@ -16,6 +17,6 @@ public enum ListType {
                 return type;
             }
         }
-        throw new InvalidParameterException("[Invalido]");
+        throw new InvalidParameterException(Constants.INVALID);
     }
 }

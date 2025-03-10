@@ -10,6 +10,7 @@ import algorithms.RadixSort;
 import algorithms.SelectionSort;
 import algorithms.SortingAlgorithm;
 import exceptions.InvalidParameterException;
+import utils.Constants;
 
 public enum SortingAlgorithmType {
     BUBBLE_SORT("b", new BubbleSort()),
@@ -36,6 +37,6 @@ public enum SortingAlgorithmType {
                 return type;
             }
         }
-        throw new InvalidParameterException("[Invalido]");
+        throw new InvalidParameterException(Constants.INVALID);
     }
 }

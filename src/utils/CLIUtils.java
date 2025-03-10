@@ -3,15 +3,14 @@ package utils;
 import enums.SortingAlgorithmType;
 import enums.ListType;
 import enums.PieceColor;
-import exceptions.ExceptionHandler;
 import exceptions.InvalidParameterException;
 import exceptions.MissingParameterException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import utils.Constants;
 
 public class CLIUtils {
 
@@ -49,18 +48,19 @@ public class CLIUtils {
                 Object result = handler.parser.apply(val);
                 results.put(key, result);
             } catch (Exception e) {
-                errors.put(key, e instanceof MissingParameterException ? "[No presente]" : "[Invalido]");
+                errors.put(key, e instanceof MissingParameterException ? Constants.MISSING : Constants.INVALID);
             }
         });
 
         if (!errors.isEmpty()) {
-            ExceptionHandler.handleParameterError(
-                    errors.getOrDefault("a", ""),
-                    errors.getOrDefault("t", ""),
-                    errors.getOrDefault("c", ""),
-                    errors.getOrDefault("r", ""),
-                    errors.getOrDefault("s", "")
+            Renderer.printErrorConfig(
+                    errors.getOrDefault("a", Constants.INVALID),
+                    errors.getOrDefault("t", Constants.INVALID),
+                    errors.getOrDefault("c", Constants.INVALID),
+                    errors.getOrDefault("r", Constants.INVALID),
+                    errors.getOrDefault("s", Constants.INVALID)
             );
+            System.exit(1);
         }
 
         return new ParsedParams(
@@ -90,26 +90,26 @@ public class CLIUtils {
             if (param.startsWith(key + "=")) {
                 String[] parts = param.split("=", 2);
                 if (parts.length < 2 || parts[1].trim().isEmpty()) {
-                    throw new MissingParameterException("[No presente]");
+                    throw new MissingParameterException(Constants.MISSING);
                 }
                 return parts[1].trim();
             }
         }
-        throw new MissingParameterException("[No presente]");
+        throw new MissingParameterException(Constants.MISSING);
     }
 
     private static int validatePieceCount(int pieceCount) {
         if (pieceCount == 1 || pieceCount == 2 || pieceCount == 4 || pieceCount == 6 || pieceCount == 8 || pieceCount == 10 || pieceCount == 16) {
             return pieceCount;
         }
-        throw new InvalidParameterException("[Invalido]");
+        throw new InvalidParameterException(Constants.INVALID);
     }
 
     private static int validateSpeed(int speed) {
         if (speed >= 100 && speed <= 1000) {
             return speed;
         }
-        throw new InvalidParameterException("[Invalido]");
+        throw new InvalidParameterException(Constants.INVALID);
     }
 
     private static class ParameterHandler {

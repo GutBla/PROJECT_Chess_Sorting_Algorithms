@@ -1,6 +1,7 @@
 package enums;
 
 import exceptions.InvalidParameterException;
+import utils.Constants;
 
 public enum PieceColor {
     WHITE("w"),
@@ -16,6 +17,6 @@ public enum PieceColor {
                 return color;
             }
         }
-        throw new InvalidParameterException("[Invalido]");
+        throw new InvalidParameterException(Constants.INVALID);
     }
 }
