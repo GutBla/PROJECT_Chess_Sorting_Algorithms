@@ -65,7 +65,7 @@ public class ChessBoard {
                 piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}};
                 break;
             case 8:
-                piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}, {7, 0}, {7, 7}};
+                piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 0}, {7, 7},{7, 2}, {7, 5}, {7, 1}, {7, 6}};
                 break;
             case 10:
                 piecePositions = new int[][]{{6, 0}, {6, 1}, {6, 2}, {6, 3}, {6, 4}, {6, 5}, {6, 6}, {6, 7}, {7, 4}, {7, 3}};
