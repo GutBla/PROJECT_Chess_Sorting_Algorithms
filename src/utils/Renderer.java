@@ -1,37 +1,21 @@
 package utils;
 
-import enums.ListType;
 import enums.PieceColor;
 import model.ChessBoard;
 import model.ChessCell;
 import model.ChessPiece;
 
 public class Renderer {
-    public static void printConfig(String algorithm, ListType listType, PieceColor color, int pieces, int speed) {
+    public static void printConfig(String algorithm, String listType, String color, String pieces, String speed) {
         printTitle();
         System.out.println("==========================================================");
         System.out.println("|                INFORMACION PRINCIPAL                   |");
         System.out.println("==========================================================");
-        String listTypeText = listType == ListType.NUMERIC ? ConsoleColor.AMARILLO + "Numérico" + ConsoleColor.RESET : ConsoleColor.AMARILLO + "Caracter" + ConsoleColor.RESET;
-        String colorText = color == PieceColor.WHITE ? ConsoleColor.AZUL + "Blancas" + ConsoleColor.RESET : ConsoleColor.AZUL + "Negras" + ConsoleColor.RESET;
-        System.out.println("Algoritmo: [" + ConsoleColor.VERDE + algorithm + ConsoleColor.RESET + "]");
-        System.out.println("Tipo de lista: [" + listTypeText + "]");
-        System.out.println("Color de piezas: [" + colorText + "]");
-        System.out.println("Número de piezas: [" + ConsoleColor.ROJO + pieces + ConsoleColor.RESET + "]");
-        System.out.println("Velocidad: [" + ConsoleColor.CYAN + speed + ConsoleColor.RESET + "] ms");
-        System.out.println("==========================================================");
-    }
-
-    public static void printErrorConfig(String algorithm, String listType, String color, String pieceCount, String speed) {
-        printTitle();
-        System.out.println("==========================================================");
-        System.out.println("|                INFORMACION PRINCIPAL                   |");
-        System.out.println("==========================================================");
-        System.out.println("Algoritmo: " + ConsoleColor.ROJO + algorithm + ConsoleColor.RESET);
-        System.out.println("Tipo de lista: " + ConsoleColor.ROJO + listType + ConsoleColor.RESET);
-        System.out.println("Color de piezas: " + ConsoleColor.ROJO + color + ConsoleColor.RESET);
-        System.out.println("Número de piezas: " + ConsoleColor.ROJO + pieceCount + ConsoleColor.RESET);
-        System.out.println("Velocidad: " + ConsoleColor.ROJO + speed + ConsoleColor.RESET);
+        System.out.println("Algoritmo: " + algorithm);
+        System.out.println("Tipo de lista: " + listType);
+        System.out.println("Color de piezas: " + color);
+        System.out.println("Número de piezas: " + pieces);
+        System.out.println("Velocidad: " + speed + " ms");
         System.out.println("==========================================================");
     }
 
