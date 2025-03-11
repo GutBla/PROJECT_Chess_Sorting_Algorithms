@@ -1,6 +1,9 @@
 package utils;
 
+import algorithms.SortingAlgorithm;
+import enums.ListType;
 import enums.PieceColor;
+import metrics.MetricsManager;
 import model.ChessBoard;
 import model.ChessCell;
 import model.ChessPiece;
@@ -8,24 +11,25 @@ import model.ChessPiece;
 public class Renderer {
     public static void printConfig(String algorithm, String listType, String color, String pieces, String speed) {
         printTitle();
-        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
-        System.out.println(ConsoleColor.MORADO + "|                INFORMACIÓN PRINCIPAL                   |" + ConsoleColor.RESET);
-        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
-        System.out.println("Algoritmo: " + ConsoleColor.VERDE + algorithm + ConsoleColor.RESET);
-        System.out.println("Tipo de lista: " + ConsoleColor.AMARILLO + listType + ConsoleColor.RESET);
-        System.out.println("Color de piezas: " + ConsoleColor.AZUL + color + ConsoleColor.RESET);
-        System.out.println("Número de piezas: " + ConsoleColor.ROJO + pieces + ConsoleColor.RESET);
-        System.out.println("Velocidad: " + ConsoleColor.CYAN + speed + ConsoleColor.RESET + " ms");
-        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "╔=================================╗" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖" + ConsoleColor.MORADO + "     INFORMACIÓN PRINCIPAL       " + ConsoleColor.BLACK + "‖" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "╠=================================╣" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖   " + ConsoleColor.RESET + "Algoritmo: " + ConsoleColor.VERDE + algorithm + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖   " + ConsoleColor.RESET + "Tipo de lista: " + ConsoleColor.AMARILLO + listType + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖   " + ConsoleColor.RESET + "Color de piezas: " + ConsoleColor.AZUL + color + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖   " + ConsoleColor.RESET + "Número de piezas: " + ConsoleColor.ROJO + pieces + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BLACK + "‖   " + ConsoleColor.RESET + "Velocidad: " + ConsoleColor.CYAN + speed + ConsoleColor.RESET + " ms");
+        System.out.println(ConsoleColor.BLACK + "╚=================================╝" + ConsoleColor.RESET);
     }
 
     public static void printTitle() {
-        System.out.println(ConsoleColor.MORADO + "             _____ _    _ ______  _____ _____ ");
-        System.out.println("            / ____| |  | |  ____|/ ____/ ____|");
-        System.out.println("           | |    | |__| | |__  | (___| (___  ");
-        System.out.println("           | |    |  __  |  __|  \\___ \\\\___ \\ ");
-        System.out.println("           | |____| |  | | |____ ____) |___) |");
-        System.out.println("            \\_____|_|  |_|______|_____/_____/ " + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.MORADO + " \n" +
+                "  ██████ ██   ██ ███████ ███████ ███████ \n" +
+                " ██      ██   ██ ██      ██      ██      \n" +
+                " ██      ███████ █████   ███████ ███████ \n" +
+                " ██      ██   ██ ██           ██      ██ \n" +
+                "  ██████ ██   ██ ███████ ███████ ███████ \n" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BG_BLACK + "             SORTING ALGORITMS            " + ConsoleColor.RESET);
     }
 
     public static void displayBoard(ChessBoard board) {
@@ -54,5 +58,28 @@ public class Renderer {
         }
         sb.append(" 　A 　B 　C 　D 　E 　F 　G 　H\n");
         return sb.toString();
+    }
+
+    public static void printBoardTitle(String title) {
+        System.out.println(ConsoleColor.MORADO + "\n┌──────────────────────────────┐");
+        System.out.println("│      " + title + "       │");
+        System.out.println("└──────────────────────────────┘" + ConsoleColor.RESET);
+    }
+
+    public static void printListTitle() {
+        System.out.println(ConsoleColor.CYAN + "Lista: " + ConsoleColor.RESET);
+    }
+
+    public static void printTypeAndBoard(ChessBoard board) {
+        System.out.println("\nTipo: " + (board.getListType() == ListType.NUMERIC ? ConsoleColor.AMARILLO + "Numérico" + ConsoleColor.RESET : ConsoleColor.AMARILLO + "Caracter" + ConsoleColor.RESET));
+    }
+
+    public static void printSortingInfo(SortingAlgorithm sortingAlgorithm) {
+        System.out.println("Algoritmo: " + ConsoleColor.VERDE + sortingAlgorithm.getName() + ConsoleColor.RESET);
+    }
+
+    public static void printMetrics() {
+        System.out.println("Tiempo total: " + ConsoleColor.CYAN + MetricsManager.getInstance().getTimeCounter().getFormattedElapsedTime() + ConsoleColor.RESET);
+        System.out.println("Total de pasos: " + ConsoleColor.CYAN + MetricsManager.getInstance().getStepCounter().getSteps() + ConsoleColor.RESET);
     }
 }

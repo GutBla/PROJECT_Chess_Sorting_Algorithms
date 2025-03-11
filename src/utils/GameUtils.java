@@ -1,8 +1,10 @@
 package utils;
-import model.ChessBoard;
-import model.ChessPiece;
+
 import enums.ListType;
 import metrics.MetricsManager;
+import model.ChessBoard;
+import model.ChessPiece;
+
 import java.util.List;
 
 public class GameUtils {
@@ -19,6 +21,7 @@ public class GameUtils {
         chessPieces.set(indexB, temp);
     }
     public static String chessPiecesToString(List<ChessPiece> chessPieces, ListType listType) {
+        Renderer.printListTitle();
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < chessPieces.size(); i++) {
             if (i > 0) sb.append(",");

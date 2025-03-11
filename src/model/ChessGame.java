@@ -88,31 +88,27 @@ public class ChessGame {
     }
 
     public void run() throws InterruptedException {
-        System.out.println("\nTipo: " + (board.getListType() == ListType.NUMERIC ? "Numérico" : "Caracter"));
-        System.out.println("\n-------------------------------------------------");
-        System.out.println("           Tablero Inicial");
-        System.out.println("-------------------------------------------------");
+        Renderer.printTypeAndBoard(board);
+        Renderer.printBoardTitle(" Tablero Inicial ");
         Renderer.displayBoard(board);
+
         List<ChessPiece> compactedPieces = board.compactPieces();
         chessPieces.clear();
         chessPieces.addAll(compactedPieces);
         board.updateLayout(chessPieces);
-        System.out.println("\nValores:");
+
         System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.displayBoard(board);
+
         MetricsManager.getInstance().getStepCounter().reset();
         MetricsManager.getInstance().getTimeCounter().start();
         sortingAlgorithm.sort(chessPieces, pauseDuration, board);
         MetricsManager.getInstance().getTimeCounter().stop();
-        System.out.println("\n-------------------------------------------------");
-        System.out.println("           Tablero Final");
-        System.out.println("-------------------------------------------------");
-        System.out.println("\nOrdenamiento:");
-        System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
+
+        Renderer.printBoardTitle("  Tablero Final  ");
+        Renderer.printSortingInfo(sortingAlgorithm);
         Renderer.displayBoard(board);
-        System.out.println("\nAlgoritmo: " + sortingAlgorithm.getName());
-        System.out.println("\nTiempo total: " + MetricsManager.getInstance().getTimeCounter().getFormattedElapsedTime());
-        System.out.println("Total de pasos: " + MetricsManager.getInstance().getStepCounter().getSteps());
+        Renderer.printMetrics();
     }
 
     public ChessBoard getBoard() {

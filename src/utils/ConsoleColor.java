@@ -15,4 +15,5 @@ public class ConsoleColor {
 
     public static final String BG_MORADO = "\033[48;2;71;73;115m";
     public static final String BG_BEIGE = "\033[48;2;166;156;172m";
+    public static final String BG_BLACK = "\033[48;2;0;0;0m";
 }
