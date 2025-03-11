@@ -35,22 +35,24 @@ public class Renderer {
     private static String getBoardDesign(ChessBoard board) {
         ChessCell[][] grid = board.getGrid();
         StringBuilder sb = new StringBuilder();
-        sb.append("\n  +----+----+----+----+----+----+----+----+\n");
+        sb.append("\n");
+
         for (int row = 7; row >= 0; row--) {
-            sb.append(row + 1).append(" |");
+            sb.append(row + 1).append(" ");
             for (int col = 0; col < 8; col++) {
                 ChessPiece piece = grid[row][col].getPiece();
+                String bgColor = (row + col) % 2 == 0 ? ConsoleColor.BG_BEIGE : ConsoleColor.BG_MORADO;
+
                 if (piece != null) {
                     String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;
-                    sb.append(" ").append(pieceColor).append(piece.getSymbol()).append(ConsoleColor.RESET).append(" ");
+                    sb.append(bgColor).append(" ").append(pieceColor).append(piece.getSymbol()).append(" ").append(ConsoleColor.RESET);
                 } else {
-                    sb.append("    ");
+                    sb.append(bgColor).append(" 　 ").append(ConsoleColor.RESET);
                 }
-                sb.append("|");
             }
-            sb.append("\n  +----+----+----+----+----+----+----+----+\n");
+            sb.append("\n");
         }
-        sb.append("    A    B    C    D    E    F    G    H\n");
+        sb.append(" 　A 　B 　C 　D 　E 　F 　G 　H\n");
         return sb.toString();
     }
 }
