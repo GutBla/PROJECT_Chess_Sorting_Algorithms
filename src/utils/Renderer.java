@@ -8,15 +8,15 @@ import model.ChessPiece;
 public class Renderer {
     public static void printConfig(String algorithm, String listType, String color, String pieces, String speed) {
         printTitle();
-        System.out.println("==========================================================");
-        System.out.println("|                INFORMACION PRINCIPAL                   |");
-        System.out.println("==========================================================");
-        System.out.println("Algoritmo: " + algorithm);
-        System.out.println("Tipo de lista: " + listType);
-        System.out.println("Color de piezas: " + color);
-        System.out.println("Número de piezas: " + pieces);
-        System.out.println("Velocidad: " + speed + " ms");
-        System.out.println("==========================================================");
+        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.MORADO + "|                INFORMACIÓN PRINCIPAL                   |" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
+        System.out.println("Algoritmo: " + ConsoleColor.VERDE + algorithm + ConsoleColor.RESET);
+        System.out.println("Tipo de lista: " + ConsoleColor.AMARILLO + listType + ConsoleColor.RESET);
+        System.out.println("Color de piezas: " + ConsoleColor.AZUL + color + ConsoleColor.RESET);
+        System.out.println("Número de piezas: " + ConsoleColor.ROJO + pieces + ConsoleColor.RESET);
+        System.out.println("Velocidad: " + ConsoleColor.CYAN + speed + ConsoleColor.RESET + " ms");
+        System.out.println(ConsoleColor.CYAN + "==========================================================" + ConsoleColor.RESET);
     }
 
     public static void printTitle() {
