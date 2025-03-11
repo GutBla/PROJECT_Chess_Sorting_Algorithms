@@ -17,7 +17,4 @@ public class MetricsManager {
     public TimeCounter getTimeCounter() {
         return timeCounter;
     }
-    public void reset() {
-        stepCounter.reset();
-    }
 }

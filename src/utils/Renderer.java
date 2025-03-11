@@ -58,7 +58,7 @@ public class Renderer {
                 ChessPiece piece = grid[row][col].getPiece();
                 if (piece != null) {
                     String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;
-                    sb.append(" " + pieceColor + piece.getSymbol() + ConsoleColor.RESET + " ");
+                    sb.append(" ").append(pieceColor).append(piece.getSymbol()).append(ConsoleColor.RESET).append(" ");
                 } else {
                     sb.append("    ");
                 }
