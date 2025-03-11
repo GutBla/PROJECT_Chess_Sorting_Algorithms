@@ -1,8 +1,6 @@
 package model;
 
 import enums.PieceColor;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class ChessPiece implements Comparable<ChessPiece> {
     protected final PieceColor color;

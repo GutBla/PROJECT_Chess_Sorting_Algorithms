@@ -3,14 +3,16 @@ package model;
 import algorithms.SortingAlgorithm;
 import enums.ListType;
 import enums.PieceColor;
+import exceptions.InvalidParameterException;
 import metrics.MetricsManager;
 import model.pieces.*;
+import utils.Constants;
 import utils.GameUtils;
 import utils.Renderer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import exceptions.InvalidParameterException;
 
 public class ChessGame {
     private final SortingAlgorithm sortingAlgorithm;
@@ -79,7 +81,7 @@ public class ChessGame {
                 }
                 break;
             default:
-                throw new InvalidParameterException("Valor de 'r' no válido");
+                throw new InvalidParameterException(Constants.INVALID);
         }
         Collections.shuffle(pieces);
         return pieces;

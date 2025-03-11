@@ -18,7 +18,6 @@ Simulación interactiva en CLI
 ## Requisitos
 
 - Java JDK 17+
-- Maven 3.8+
 - Git 2.3+
 
 ## Instalación

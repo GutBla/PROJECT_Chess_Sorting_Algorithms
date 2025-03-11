@@ -1,7 +1,9 @@
 package model;
 
-import enums.ListType;
 import config.GameConfig;
+import enums.ListType;
+import utils.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -77,7 +79,7 @@ public class ChessBoard {
                 };
                 break;
             default:
-                throw new IllegalArgumentException("Cantidad de piezas no soportada");
+                throw new IllegalArgumentException(Constants.INVALID);
         }
 
         for (int i = 0; i < chessPieces.size(); i++) {
