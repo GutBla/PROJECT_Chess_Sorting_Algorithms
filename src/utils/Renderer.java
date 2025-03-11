@@ -24,12 +24,10 @@ public class Renderer {
 
     public static void printTitle() {
         System.out.println(ConsoleColor.MORADO + " \n" +
-                "  ██████ ██   ██ ███████ ███████ ███████ \n" +
-                " ██      ██   ██ ██      ██      ██      \n" +
-                " ██      ███████ █████   ███████ ███████ \n" +
-                " ██      ██   ██ ██           ██      ██ \n" +
-                "  ██████ ██   ██ ███████ ███████ ███████ \n" + ConsoleColor.RESET);
-        System.out.println(ConsoleColor.BG_BLACK + "             SORTING ALGORITMS            " + ConsoleColor.RESET);
+                "  █▀▀█  █  █  █▀▀▀  █▀▀▀█  █▀▀▀█ \n" +
+                "  █     █▀▀█  █▀▀▀  ▀▀▀▄▄  ▀▀▀▄▄  \n" +
+                "  █▄▄█  █  █  █▄▄▄  █▄▄▄█  █▄▄▄█\n" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.BG_BLACK + "         SORTING ALGORITMS         " + ConsoleColor.RESET);
     }
 
     public static void displayBoard(ChessBoard board) {
