@@ -33,7 +33,6 @@ public class Renderer {
     public static void displayBoard(ChessBoard board) {
         System.out.println(getBoardDesign(board));
     }
-
     private static String getBoardDesign(ChessBoard board) {
         ChessCell[][] grid = board.getGrid();
         StringBuilder sb = new StringBuilder();
@@ -49,12 +48,12 @@ public class Renderer {
                     String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;
                     sb.append(bgColor).append(" ").append(pieceColor).append(piece.getSymbol()).append(" ").append(ConsoleColor.RESET);
                 } else {
-                    sb.append(bgColor).append("   ").append(ConsoleColor.RESET);
+                    sb.append(bgColor).append(" 　 ").append(ConsoleColor.RESET);
                 }
             }
             sb.append("\n");
         }
-        sb.append("  A   B   C   D   E   F   G   H\n");
+        sb.append(" 　A 　B 　C 　D 　E 　F 　G 　H\n");
         return sb.toString();
     }
 

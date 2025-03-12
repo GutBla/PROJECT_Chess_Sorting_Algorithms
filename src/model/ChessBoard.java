@@ -100,7 +100,7 @@ public class ChessBoard {
                     case 4 -> piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}};
                     case 6 -> piecePositions = new int[][]{{7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}};
                     case 8 -> piecePositions = new int[][]{
-                            {7, 4}, {7, 3}, {7, 0}, {7, 7},
+                            {7, 3}, {7, 4}, {7, 0}, {7, 7},
                             {7, 2}, {7, 5}, {7, 1}, {7, 6}
                     };
                     case 10 -> piecePositions = new int[][]{
@@ -109,7 +109,7 @@ public class ChessBoard {
                             {7, 4}, {7, 3}
                     };
                     case 16 -> piecePositions = new int[][]{
-                            {7, 4}, {7, 3}, {7, 0}, {7, 7},
+                            {7, 3}, {7, 4}, {7, 0}, {7, 7},
                             {7, 2}, {7, 5}, {7, 1}, {7, 6},
                             {6, 0}, {6, 1}, {6, 2}, {6, 3},
                             {6, 4}, {6, 5}, {6, 6}, {6, 7}
