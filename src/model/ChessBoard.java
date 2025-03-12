@@ -55,9 +55,9 @@ public class ChessBoard {
         int[][] piecePositions = null;
         PieceColor color = chessPieces.get(0).getColor();
 
-        boolean soloPeones = chessPieces.size() == 8 && chessPieces.get(0) instanceof model.pieces.Pawn;
+        boolean onlyPawns = chessPieces.size() == 8 && chessPieces.get(0) instanceof model.pieces.Pawn;
 
-        if (soloPeones) {
+        if (onlyPawns) {
             if (color == PieceColor.WHITE) {
                 piecePositions = new int[][]{
                         {1, 0}, {1, 1}, {1, 2}, {1, 3},
