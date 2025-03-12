@@ -106,10 +106,12 @@ public class ChessGame {
         MetricsManager.getInstance().getTimeCounter().stop();
 
         Renderer.printBoardTitle("  Tablero Final  ");
+        System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.printSortingInfo(sortingAlgorithm);
         Renderer.displayBoard(board);
         Renderer.printMetrics();
     }
+
 
     public ChessBoard getBoard() {
         return board;

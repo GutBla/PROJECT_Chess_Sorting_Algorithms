@@ -43,7 +43,7 @@ public class Renderer {
             sb.append(row + 1).append(" ");
             for (int col = 0; col < 8; col++) {
                 ChessPiece piece = grid[row][col].getPiece();
-                String bgColor = (row + col) % 2 == 0 ? ConsoleColor.BG_BEIGE : ConsoleColor.BG_MORADO;
+                String bgColor = (row + col) % 2 == 0 ? ConsoleColor.BG_MORADO : ConsoleColor.BG_BEIGE;
 
                 if (piece != null) {
                     String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;

@@ -1,33 +1,71 @@
 # Chess : Sorting Algorithms
-![Java](https://img.shields.io/badge/Java-red)
+
+[![PROJECT](https://img.shields.io/badge/-PROJECT-0d1117.svg?logo=googlekeep&style=popout&logoColor=white)](#)
+[![Java](https://img.shields.io/badge/Java-e31e24.svg?logo=openjdk&style=popout&logoColor=white)](#)
 
 ![Protada_Chess_Sorting_Algorithms.png](images/Protada_Chess_Sorting_Algorithms.png)
 
+[![Status: Completed](https://img.shields.io/badge/Status-Completed-verde.svg?logo=&style=popout)](#)
+
 # Algoritmos de Ordenamiento para Ajedrez
+
+## Descripción del proyecto
+
+Este proyecto es una simulación interactiva que combina el mundo del ajedrez con diversos algoritmos de ordenamiento. La
+idea es visualizar el proceso de ordenamiento aplicándolo a un conjunto de piezas de ajedrez, utilizando algoritmos
+clásicos como Bubble Sort, Quick Sort, Insertion Sort, entre otros. La aplicación cuenta con una interfaz en consola que
+muestra el tablero de ajedrez y actualiza en tiempo real el proceso de ordenamiento, permitiendo apreciar la ejecución
+paso a paso, junto con métricas como el tiempo transcurrido y el número total de pasos.
 
 ## Características
 
-Simulación interactiva en CLI
-
-- Implementación de 8 algoritmos de ordenamiento
-- Modelado POO de piezas de ajedrez
-- Generación aleatoria de configuraciones válidas
-- Medición de tiempo de ejecución
-- Visualización paso a paso con control de velocidad
+- **Visualización interactiva:** Renderiza el tablero de ajedrez y muestra el proceso de ordenamiento en tiempo real.
+- **Múltiples algoritmos de ordenamiento:** Incluye Bubble Sort, Counting Sort, Heap Sort, Insertion Sort, Merge Sort,
+  Quick Sort, Radix Sort y Selection Sort.
+- **Configuración vía línea de comandos:** Permite ajustar parámetros como el algoritmo a utilizar, el tipo de lista (
+  numérica o por caracteres), el color de las piezas, el número de piezas y la velocidad de ejecución (en milisegundos).
+- **Métricas de rendimiento:** Registra el tiempo de ejecución y el número de pasos realizados durante el proceso de
+  ordenamiento.
+- **Arquitectura modular:** Separación clara de responsabilidades en paquetes
+  como `algorithms`, `model`, `enums`, `utils`, `config`, entre otros.
 
 ## Requisitos
 
-- Java JDK 17+
-- Git 2.3+
+- **Java 17:** Se requiere Java 17 o superior para compilar y ejecutar el proyecto.
 
 ## Instalación
 
-Clona el repositorio:
+1. Clona el repositorio en tu máquina local:
 
 ```bash
 git clone https://github.com/GutBla/PROJECT_Chess_Sorting_Algorithms.git
+```
+
+2. Ingresa al directorio del proyecto
+
+```bash
 cd PROJECT_Chess_Sorting_Algorithms
 ```
+
+## Uso
+
+El proyecto se ejecuta a través de la clase `Main.java`. Los parámetros se ingresan mediante argumentos de línea de
+comandos, usando las siguientes claves:
+
+- `a`: Código del algoritmo de ordenamiento (por ejemplo, `b` para Bubble Sort, `q` para Quick Sort, etc.).
+- `t`: Tipo de lista (por ejemplo, `n` para numérico o `c` para caracter).
+- `c`: Color de las piezas (por ejemplo, `w` para blancas, `b` para negras).
+- `r`: Número de piezas (valores permitidos: 1, 2, 4, 6, 8, 10, 16).
+- `s`: Velocidad en milisegundos (valor entre 100 y 1000).
+
+Ejemplo de ejecución:
+
+```bash
+java Main a=b t=n c=w r=16 s=200
+```
+
+Este comando ejecuta el proyecto utilizando Bubble Sort, lista numérica, piezas blancas, 16 piezas y una velocidad de
+200 ms.
 ## ¿Qué es el Ajedrez?
 
 El ajedrez es un juego de estrategia de mesa que se juega entre dos personas. Se desarrolla en un tablero de 8x8 casillas y cada jugador cuenta con un conjunto de 16 piezas, cada una con movimientos y funciones específicas. El objetivo principal del juego es capturar al rey del oponente mediante una serie de movimientos estratégicos.
@@ -368,11 +406,21 @@ Tiempo total: [4249] ms
     A    B    C    D    E    F    G    H
 ```
 
-## Workflow (Flujo de trabajo)
+## Diagrama de Clases (Mermaid)
 
-![Capstone_Chess_Diagrama.png](images/Capstone_Chess_Diagrama.png)
+El siguiente diagrama representa la estructura del proyecto, mostrando las relaciones entre las diferentes clases y
+componentes. Se incluyen las clases principales encargadas de la configuración del juego, la lógica de ordenamiento, la
+representación del tablero y las piezas de ajedrez, así como las herramientas para la visualización y métricas de
+rendimiento.
 
-```bash
+El diseño sigue una arquitectura modular, separando las responsabilidades en distintos paquetes
+como `algorithms`, `model`, `utils`, y `config`.
+
+![Diagrama_Clase_ ChessSortingAlgoritms_Mermaid.png](images/Diagrama_Clase_ChessSortingAlgoritms_Mermaid.png)
+
+### Codigo del Diagrma (Mermaid)
+
+```mermaid
 ---
 config:
   theme: base
@@ -445,58 +493,29 @@ classDiagram
         +getDisplayValue(isNumeric: Boolean) : String
         -symbol: String
         -color: PieceColor
-        -position: ChessCell
     }
 
-    class Bishop {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
-
-    class King {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
-
-    class Knight {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
-
-    class Pawn {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
-
-    class Queen {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
-
-    class Rook {
-        +getSymbol() : String
-        +getDisplayValue(isNumeric: Boolean) : String
-    }
+    ChessPiece <|-- Bishop
+    ChessPiece <|-- King
+    ChessPiece <|-- Knight
+    ChessPiece <|-- Pawn
+    ChessPiece <|-- Queen
+    ChessPiece <|-- Rook
 
     class ChessGame {
         +start() : void
-        +movePiece(from: ChessCell, to: ChessCell) : void
-        -currentPlayer: PieceColor
         -board: ChessBoard
     }
 
     class Renderer {
         +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int) : void
-        +printTitle() : void
         +displayBoard(board: ChessBoard) : void
-        -formatWithColor(text: String, color: String) : String
     }
 
     class GameUtils {
         +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int) : void
         +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int) : void
         +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType) : String
-        -formatList(chessPieces: List<ChessPiece>, listType: ListType) : String
     }
 
     class ConsoleColor {
@@ -505,7 +524,6 @@ classDiagram
         +AMARILLO : String
         +AZUL : String
         +ROJO : String
-        +NARANJA : String
         +BLACK : String
         +WHITE : String
         +CYAN : String
@@ -535,12 +553,10 @@ classDiagram
 
     class InvalidParameterException {
         +InvalidParameterException(message: String) : void
-        -message: String
     }
 
     class MissingParameterException {
         +MissingParameterException(message: String) : void
-        -message: String
     }
 
     class ListType {
@@ -580,12 +596,6 @@ classDiagram
     SortingAlgorithm <|.. SelectionSort
     ChessBoard --> ChessCell
     ChessCell --> ChessPiece
-    ChessPiece <|-- Bishop
-    ChessPiece <|-- King
-    ChessPiece <|-- Knight
-    ChessPiece <|-- Pawn
-    ChessPiece <|-- Queen
-    ChessPiece <|-- Rook
     ChessBoard --> ChessGame
     Renderer --> ChessBoard
     GameUtils --> ChessBoard
@@ -599,199 +609,173 @@ classDiagram
 
 ```
 
-# Diagrama de Clases UML
+# Diagrama de Clases (UML)
 
-![Class_Diagram_Chess.png](images/Class_Diagram_Chess.png)
+El siguiente diagrama UML representa la estructura del proyecto, incluyendo la organización de clases y sus relaciones.
+Se destacan los diferentes algoritmos de ordenamiento implementados, la representación del tablero de ajedrez y sus
+piezas, así como las clases auxiliares encargadas de la configuración, métricas y renderizado en consola.
 
-```
+El diseño modular facilita la separación de responsabilidades, permitiendo una implementación clara y escalable del
+sistema.
+
+![Diagrama_Clase_ ChessSortingAlgoritms_UML.png](images/Diagrama_Clase_ChessSortingAlgoritms_UML.png)
+
+### Codigo del Diagrma (UML)
+
+```plantuml
 @startuml
+
 class Main {
-    +main(args: String[]) : void
+    +main(args: String[]): void
 }
 
 class GameConfig {
-    +startGame(args: String[]) : void
-    -parseArguments(args: String[]) : void
-    -validateParameters() : void
+    +startGame(args: String[]): void
+    -parseArguments(args: String[]): void
+    -validateParameters(): void
 }
 
-class SortingAlgorithm {
-    <<interface>>
-    +sort(list: List<int>) : List<int>
+interface SortingAlgorithm {
+    +sort(list: List<int>): List<int>
 }
 
 class BubbleSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class CountingSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class HeapSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class InsertionSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class MergeSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class QuickSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class RadixSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class SelectionSort {
-    +sort(list: List<int>) : List<int>
+    +sort(list: List<int>): List<int>
 }
 
 class SortingAlgorithmFactory {
-    +createAlgorithm(type: SortingAlgorithmType) : SortingAlgorithm
+    +createAlgorithm(type: SortingAlgorithmType): SortingAlgorithm
 }
 
 class ChessBoard {
-    +getGrid() : ChessCell[][]
-    +updateLayout(pieces: List<ChessPiece>) : void
+    +getGrid(): ChessCell[][]
+    +updateLayout(pieces: List<ChessPiece>): void
     -grid: ChessCell[][]
 }
 
 class ChessCell {
-    +getPiece() : ChessPiece
+    +getPiece(): ChessPiece
     -piece: ChessPiece
 }
 
 class ChessPiece {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
+    +getSymbol(): String
+    +getDisplayValue(isNumeric: Boolean): String
     -symbol: String
     -color: PieceColor
-    -position: ChessCell
 }
 
-class Bishop {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
-
-class King {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
-
-class Knight {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
-
-class Pawn {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
-
-class Queen {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
-
-class Rook {
-    +getSymbol() : String
-    +getDisplayValue(isNumeric: Boolean) : String
-}
+ChessPiece <|-- Bishop
+ChessPiece <|-- King
+ChessPiece <|-- Knight
+ChessPiece <|-- Pawn
+ChessPiece <|-- Queen
+ChessPiece <|-- Rook
 
 class ChessGame {
-    +start() : void
-    +movePiece(from: ChessCell, to: ChessCell) : void
-    -currentPlayer: PieceColor
+    +start(): void
     -board: ChessBoard
 }
 
 class Renderer {
-    +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int) : void
-    +printTitle() : void
-    +displayBoard(board: ChessBoard) : void
-    -formatWithColor(text: String, color: String) : String
+    +printConfig(algorithm: String, listType: ListType, color: PieceColor, pieces: int, speed: int): void
+    +displayBoard(board: ChessBoard): void
 }
 
 class GameUtils {
-    +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int) : void
-    +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int) : void
-    +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType) : String
-    -formatList(chessPieces: List<ChessPiece>, listType: ListType) : String
+    +updateBoardAndPause(board: ChessBoard, chessPieces: List<ChessPiece>, pauseDuration: int): void
+    +swapChessPieces(chessPieces: List<ChessPiece>, indexA: int, indexB: int): void
+    +chessPiecesToString(chessPieces: List<ChessPiece>, listType: ListType): String
 }
 
 class ConsoleColor {
-    +MORADO : String
-    +VERDE : String
-    +AMARILLO : String
-    +AZUL : String
-    +ROJO : String
-    +NARANJA : String
-    +BLACK : String
-    +WHITE : String
-    +CYAN : String
-    +RESET : String
+    +MORADO: String
+    +VERDE: String
+    +AMARILLO: String
+    +AZUL: String
+    +ROJO: String
+    +BLACK: String
+    +WHITE: String
+    +CYAN: String
+    +RESET: String
 }
 
 class MetricsManager {
-    +getInstance() : MetricsManager
-    +getStepCounter() : StepCounter
-    +getTimeCounter() : TimeCounter
+    +getInstance(): MetricsManager
+    +getStepCounter(): StepCounter
+    +getTimeCounter(): TimeCounter
     -stepCounter: StepCounter
     -timeCounter: TimeCounter
 }
 
 class StepCounter {
-    +increment() : void
+    +increment(): void
     -count: int
 }
 
 class TimeCounter {
-    +start() : void
-    +stop() : void
-    +getTotalTime() : String
+    +start(): void
+    +stop(): void
+    +getTotalTime(): String
     -startTime: long
     -endTime: long
 }
 
 class InvalidParameterException {
-    +InvalidParameterException(message: String) : void
-    -message: String
+    +InvalidParameterException(message: String): void
 }
 
 class MissingParameterException {
-    +MissingParameterException(message: String) : void
-    -message: String
+    +MissingParameterException(message: String): void
 }
 
-class ListType {
-    <<enumeration>>
-    +NUMERIC
-    +CHARACTER
+enum ListType {
+    NUMERIC
+    CHARACTER
 }
 
-class PieceColor {
-    <<enumeration>>
-    +WHITE
-    +BLACK
+enum PieceColor {
+    WHITE
+    BLACK
 }
 
-class SortingAlgorithmType {
-    <<enumeration>>
-    +BUBBLE
-    +INSERTION
-    +MERGE
-    +QUICK
-    +RADIX
-    +SELECTION
-    +HEAP
-    +COUNTING
+enum SortingAlgorithmType {
+    BUBBLE
+    INSERTION
+    MERGE
+    QUICK
+    RADIX
+    SELECTION
+    HEAP
+    COUNTING
 }
 
 Main --> GameConfig
@@ -807,12 +791,6 @@ SortingAlgorithm <|.. RadixSort
 SortingAlgorithm <|.. SelectionSort
 ChessBoard --> ChessCell
 ChessCell --> ChessPiece
-ChessPiece <|-- Bishop
-ChessPiece <|-- King
-ChessPiece <|-- Knight
-ChessPiece <|-- Pawn
-ChessPiece <|-- Queen
-ChessPiece <|-- Rook
 ChessBoard --> ChessGame
 Renderer --> ChessBoard
 GameUtils --> ChessBoard
@@ -823,38 +801,59 @@ MetricsManager --> TimeCounter
 InvalidParameterException --> GameUtils
 MissingParameterException --> GameUtils
 ConsoleColor --> Renderer
-@enduml
 
+@enduml
 ```
 
-## Execution (Ejecución)
+## Ejecución del Proyecto
 
+![Ejecucion_ChessSortingAlgoritms_1.gif](images/Ejecucion_ChessSortingAlgoritms_1.gif)
+
+A continuación se muestran algunos ejemplos de ejecución:
+
+### Caso correcto:
 Input (CLI):
-
 ```bash
 a=b t=n c=w r=16 s=200
 ```
 
+- **Parámetros:** `a=b t=n c=w r=16 s=200`
+- **Descripción:** Se ejecuta el ordenamiento completo con 16 piezas (combinación de piezas mayores y peones), mostrando
+  el tablero inicial, el proceso paso a paso y el tablero final con las métricas.
+
 Output:
 
-![Capstone_Chess_Ejecucion_1.png](images/Capstone_Chess_Ejecucion_1.png)
+![Ejecucion_ChessSortingAlgoritms_2.png](images/Ejecucion_ChessSortingAlgoritms_2.png)
 
-![Capstone_Chess_Ejecucion_2.png](images/Capstone_Chess_Ejecucion_2.png)
-
+### Caso con parámetros vacíos:
 Input (CLI):
 
 ```bash
 
 ```
 
+- Si alguno de los parámetros no se proporciona, el programa detecta el error y muestra un mensaje indicando que falta
+  un parámetro.
+
 Output:
-![Capstone_Chess_Ejecucion_3.png](images/Capstone_Chess_Ejecucion_3.png)
+
+![Ejecucion_ChessSortingAlgoritms_3.png](images/Ejecucion_ChessSortingAlgoritms_3.png)
+
+### Caso de parámetro inválido:
+
+- **Parámetros:** `a=x t=c c=b r=10 s=300`
+- **Descripción:** Aquí el código del algoritmo (`a=x`) es inválido y además se ha ingresado un valor no permitido para
+  el número de piezas (en este caso, 10 se utiliza para generar solo peones; sin embargo, si se mezclan tipos, se
+  mostrará el error correspondiente).
+
+El proyecto imprime en consola la configuración utilizada, el estado del tablero en cada paso del proceso de
+ordenamiento y, al finalizar, muestra las métricas de rendimiento (tiempo total y pasos realizados).
 
 Input (CLI):
 
 ```bash
- a=x t=x c=x r=7 s=1
+a=x t=c c=b r=10 s=300
 ```
 
 Output:
-![Capstone_Chess_Ejecucion_4.png](images/Capstone_Chess_Ejecucion_4.png)
+![Ejecucion_ChessSortingAlgoritms_4.png](images/Ejecucion_ChessSortingAlgoritms_4.png)
