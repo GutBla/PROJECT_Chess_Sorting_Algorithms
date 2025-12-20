@@ -89,7 +89,7 @@ public class ChessGame {
 
     public void run() throws InterruptedException {
         Renderer.printTypeAndBoard(board);
-        Renderer.printBoardTitle(" Tablero Inicial ");
+        Renderer.printBoardTitle(" Initial Board   ");
         Renderer.displayBoard(board);
 
         List<ChessPiece> compactedPieces = board.compactPieces();
@@ -105,7 +105,7 @@ public class ChessGame {
         sortingAlgorithm.sort(chessPieces, pauseDuration, board);
         MetricsManager.getInstance().getTimeCounter().stop();
 
-        Renderer.printBoardTitle("  Tablero Final  ");
+        Renderer.printBoardTitle("  Final Board    ");
         System.out.println(GameUtils.chessPiecesToString(chessPieces, board.getListType()));
         Renderer.printSortingInfo(sortingAlgorithm);
         Renderer.displayBoard(board);

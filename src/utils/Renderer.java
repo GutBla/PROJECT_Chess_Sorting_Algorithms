@@ -7,6 +7,7 @@ import metrics.MetricsManager;
 import model.ChessBoard;
 import model.ChessCell;
 import model.ChessPiece;
+import model.pieces.Empty;
 
 public class Renderer {
     public static void printConfig(String algorithm, String listType, String color, String pieces, String speed) {
@@ -33,20 +34,23 @@ public class Renderer {
     public static void displayBoard(ChessBoard board) {
         System.out.println(getBoardDesign(board));
     }
+
     private static String getBoardDesign(ChessBoard board) {
         ChessCell[][] grid = board.getGrid();
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
-
         for (int row = 7; row >= 0; row--) {
             sb.append(row + 1).append(" ");
             for (int col = 0; col < 8; col++) {
                 ChessPiece piece = grid[row][col].getPiece();
                 String bgColor = (row + col) % 2 == 0 ? ConsoleColor.BG_PURPLE : ConsoleColor.BG_BEIGE;
-
                 if (piece != null) {
-                    String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;
-                    sb.append(bgColor).append(" ").append(pieceColor).append(piece.getSymbol()).append(" ").append(ConsoleColor.RESET);
+                    if (piece instanceof Empty) {
+                        sb.append(bgColor).append(" 　 ").append(ConsoleColor.RESET);
+                    } else {
+                        String pieceColor = piece.getColor() == PieceColor.WHITE ? ConsoleColor.WHITE : ConsoleColor.BLACK;
+                        sb.append(bgColor).append(" ").append(pieceColor).append(piece.getSymbol()).append(" ").append(ConsoleColor.RESET);
+                    }
                 } else {
                     sb.append(bgColor).append(" 　 ").append(ConsoleColor.RESET);
                 }

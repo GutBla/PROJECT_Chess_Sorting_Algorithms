@@ -3,6 +3,7 @@ package model;
 import config.GameConfig;
 import enums.ListType;
 import enums.PieceColor;
+import model.pieces.Empty;
 import utils.Constants;
 
 import java.util.ArrayList;
@@ -24,9 +25,11 @@ public class ChessBoard {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 grid[row][col] = new ChessCell(row, col);
+                grid[row][col].setPiece(new Empty());
             }
         }
     }
+
     public List<ChessPiece> placePiecesRandomly(List<ChessPiece> chessPieces) {
         clearBoard();
         List<ChessPiece> shuffledPieces = new ArrayList<>(chessPieces);
@@ -37,26 +40,22 @@ public class ChessBoard {
             do {
                 x = random.nextInt(SIZE);
                 y = random.nextInt(SIZE);
-            } while (grid[x][y].getPiece() != null);
+            } while (!(grid[x][y].getPiece() instanceof Empty));
             grid[x][y].setPiece(piece);
         }
         return shuffledPieces;
     }
-
 
     public void updateLayout(List<ChessPiece> chessPieces) {
         clearBoard();
         placePiecesForRendering(chessPieces);
     }
 
-
     public void placePiecesForRendering(List<ChessPiece> chessPieces) {
         clearBoard();
         int[][] piecePositions = null;
         PieceColor color = chessPieces.get(0).getColor();
-
         boolean onlyPawns = chessPieces.size() == 8 && chessPieces.get(0) instanceof model.pieces.Pawn;
-
         if (onlyPawns) {
             if (color == PieceColor.WHITE) {
                 piecePositions = new int[][]{
@@ -118,7 +117,6 @@ public class ChessBoard {
                 }
             }
         }
-
         for (int i = 0; i < chessPieces.size(); i++) {
             int row = piecePositions[i][0];
             int col = piecePositions[i][1];
@@ -126,20 +124,18 @@ public class ChessBoard {
         }
     }
 
-
     public List<ChessPiece> compactPieces() {
         List<ChessPiece> compacted = new ArrayList<>();
         for (int row = SIZE - 1; row >= 0; row--) {
             for (int col = 0; col < SIZE; col++) {
                 ChessPiece piece = grid[row][col].getPiece();
-                if (piece != null) {
+                if (!(piece instanceof Empty)) {
                     compacted.add(piece);
                 }
             }
         }
         return compacted;
     }
-
 
     public ChessCell[][] getGrid() {
         return grid;
@@ -148,7 +144,7 @@ public class ChessBoard {
     private void clearBoard() {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
-                grid[row][col].setPiece(null);
+                grid[row][col].setPiece(new Empty());
             }
         }
     }
