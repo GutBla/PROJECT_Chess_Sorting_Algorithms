@@ -1,0 +1,15 @@
+flowchart TD
+    Start([Inicio: Radix Sort]) --> Max[Encontrar valor máximo]
+    Max --> Exp[exp = 1]
+    Exp --> Loop{"max / exp > 0?"}
+    
+    Loop -->|No| End([Fin: Ordenado])
+    Loop -->|Sí| Counting["Counting Sort por dígito"]
+    
+    Counting --> CS1["Crear count[10] = 0"]
+    CS1 --> CS2["Contar (arr[i] / exp) % 10"]
+    CS2 --> CS3["Acumular posiciones"]
+    CS3 --> CS4["Construir arreglo temporal"]
+    CS4 --> CS5["Copiar temporal a arr"]
+    CS5 --> Mul["exp = exp * 10"]
+    Mul --> Loop

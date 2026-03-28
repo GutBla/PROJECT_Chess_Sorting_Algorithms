@@ -1,0 +1,21 @@
+flowchart TD
+    Start([Inicio: Bubble Sort]) --> Init[n = longitud]
+    Init --> OutI[i = 0]
+    OutI --> OutCheck{"i < n-1?"}
+    OutCheck -->|No| End([Fin: Ordenado])
+    OutCheck -->|Sí| Swapped[swapped = false]
+    
+    Swapped --> InJ[j = 0]
+    InJ --> InCheck{"j < n-i-1?"}
+    InCheck -->|No| CheckSwapped{"swapped == true?"}
+    InCheck -->|Sí| Comp{"arr[j] > arr[j+1]?"}
+    
+    Comp -->|Sí| Exchange["Intercambiar arr[j] con arr[j+1]"]
+    Comp -->|No| NextJ[j++]
+    Exchange --> Mark[swapped = true]
+    Mark --> NextJ
+    NextJ --> InCheck
+    
+    CheckSwapped -->|Sí| NextI[i++]
+    CheckSwapped -->|No| End
+    NextI --> OutCheck

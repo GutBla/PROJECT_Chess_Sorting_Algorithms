@@ -1,0 +1,22 @@
+flowchart TD
+    Start([Inicio: Quick Sort]) --> Base{"low < high?"}
+    Base -->|No| Return([Retornar])
+    Base -->|Sí| Pivot["pivot = arr[high]"]
+    
+    Pivot --> IInit["i = low - 1"]
+    IInit --> JInit["j = low"]
+    JInit --> Loop{"j < high?"}
+    
+    Loop -->|Sí| Comp{"arr[j] <= pivot?"}
+    Comp -->|Sí| IncI["i++"]
+    IncI --> Swap["Intercambiar arr[i] con arr[j]"]
+    Swap --> NextJ["j++"]
+    
+    Comp -->|No| NextJ
+    NextJ --> Loop
+    
+    Loop -->|No| Final["Intercambiar arr[i+1] con arr[high]"]
+    Final --> Pi["pi = i + 1"]
+    Pi --> RecL["QuickSort(low, pi-1)"]
+    RecL --> RecR["QuickSort(pi+1, high)"]
+    RecR --> End([Fin: Ordenado])

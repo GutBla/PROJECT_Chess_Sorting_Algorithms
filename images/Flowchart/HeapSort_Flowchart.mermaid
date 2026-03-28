@@ -1,0 +1,27 @@
+flowchart TD
+    Start([Inicio: Counting Sort]) --> Max[Encontrar valor máximo]
+    Max --> Create["Crear count[max + 1]"]
+    Create --> Init["Inicializar count en 0"]
+    
+    Init --> I1[i = 0]
+    I1 --> Loop1{"i < n?"}
+    Loop1 -->|Sí| AddCount["count[arr[i]]++"]
+    AddCount --> Next1[i++]
+    Next1 --> Loop1
+    Loop1 -->|No| CumInit[i = 1]
+    
+    CumInit --> Loop2{"i <= max?"}
+    Loop2 -->|Sí| Sum[s28]
+    Sum --> Next2[i++]
+    Next2 --> Loop2
+    Loop2 -->|No| OutInit["Crear output[n]"]
+    
+    OutInit --> I2[i = n - 1]
+    I2 --> Loop3{s30}
+    Loop3 -->|Sí| Val[s29]
+    Val --> Pos["output[count[val] - 1] = val"]
+    Pos --> Dec["count[val]--"]
+    Dec --> Next3[i--]
+    Next3 --> Loop3
+    Loop3 -->|No| CopyBack[s31]
+    CopyBack --> End([Fin: Ordenado])

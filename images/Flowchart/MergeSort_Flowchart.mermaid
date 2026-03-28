@@ -1,0 +1,38 @@
+flowchart TD
+    Start([Inicio: Merge Sort]) --> Base{"len(arr) <= 1?"}
+    Base -->|Sí| Return([Retornar])
+    Base -->|No| Mid["mid = len(arr) / 2"]
+    
+    Mid --> Left["left = arr[0:mid]"]
+    Left --> Right["right = arr[mid:len(arr)]"]
+    
+    Right --> RecL["MergeSort(left)"]
+    RecL --> RecR["MergeSort(right)"]
+    
+    RecR --> Merge["i = 0, j = 0, k = 0"]
+    Merge --> Loop{"i < len(left) AND j < len(right)?"}
+    
+    Loop -->|Sí| Comp{"left[i] <= right[j]?"}
+    Comp -->|Sí| CopyL["arr[k] = left[i]"]
+    Comp -->|No| CopyR["arr[k] = right[j]"]
+    
+    CopyL --> IncL["i++"]
+    CopyR --> IncR["j++"]
+    IncL --> IncK1["k++"]
+    IncR --> IncK2["k++"]
+    IncK1 --> Loop
+    IncK2 --> Loop
+    
+    Loop -->|No| RestLeft{"i < len(left)?"}
+    RestLeft -->|Sí| CopyRestL["arr[k] = left[i]"]
+    CopyRestL --> IncRL["i++"]
+    IncRL --> IncRK["k++"]
+    IncRK --> RestLeft
+    
+    RestLeft -->|No| RestRight{"j < len(right)?"}
+    RestRight -->|Sí| CopyRestR["arr[k] = right[j]"]
+    CopyRestR --> IncRR["j++"]
+    IncRR --> IncRRK["k++"]
+    IncRRK --> RestRight
+    
+    RestRight -->|No| End([Fin: Fusionado])

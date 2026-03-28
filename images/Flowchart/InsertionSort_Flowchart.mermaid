@@ -1,0 +1,15 @@
+flowchart TD
+    Start([Inicio: Insertion Sort]) --> Init[i = 1]
+    Init --> Outer{"i < n?"}
+    Outer -->|No| End([Fin: Ordenado])
+    Outer -->|Sí| Key["key = arr[i]"]
+    
+    Key --> SetJ["j = i - 1"]
+    SetJ --> Inner{"j >= 0 AND arr[j] > key?"}
+    Inner -->|Sí| Shift["arr[j+1] = arr[j]"]
+    Shift --> DecJ["j--"]
+    DecJ --> Inner
+    
+    Inner -->|No| Insert["arr[j+1] = key"]
+    Insert --> NextI["i++"]
+    NextI --> Outer
