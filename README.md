@@ -160,49 +160,49 @@ Los algoritmos de ordenamiento son procedimientos diseñados para organizar un c
 
 Este algoritmo selecciona el elemento más pequeño y lo intercambia con el primer elemento, repitiendo este proceso con el resto de la lista.
 
-![Selection_sort.png](images/Selection_sort.png)
+![Selection_sort](images/Selection_sort.gif)
 
 ### Bubble Sort (Burbuja) `a=b` o `a=B`
 
 Compara elementos adyacentes y los intercambia si están en el orden incorrecto, recorriendo la lista varias veces.
 
-![Bubble_sort.png](images/Bubble_sort.png)
+![Bubble_sort](images/Bubble_sort.gif)
 
 ### Insertion Sort (Inserción) `a=i` o `a=I`
 
 Inserta cada elemento en su posición correcta dentro de una parte ordenada de la lista.
 
-![Insertion_sort.png](images/Insertion_sort.png)
+![Insertion_sort](images/Insertion_sort.gif)
 
 ### Merge Sort (Combinación) `a=m` o `a=M`
 
 Divide la lista en partes más pequeñas, las ordena y luego las combina en una lista ordenada.
 
-![Merge_sort.png](images/Merge_sort.png)
+![Merge_sort](images/Merge_sort.gif)
 
 ### Quick Sort (Rápida) `a=q` o `a=Q`
 
 Selecciona un pivote, divide la lista en elementos menores y mayores que el pivote y ordena cada sublista recursivamente.
 
-![Quick_sort.png](images/Quick_sort.png)
+![Quick_sort](images/Quick_sort.gif)
 
 ### Heap Sort (Montón) `a=h` o `a=H`
 
 Construye un montón binario y extrae el elemento más grande repetidamente para formar la lista ordenada.
 
-![Heap_sort.png](images/Heap_sort.png)
+![Heap_sort](images/Heap_sort.gif)
 
 ### Counting Sort (Conteo) `a=c` o `a=C`
 
 Cuenta la frecuencia de cada elemento y usa esa información para construir la lista ordenada.
 
-![Counting_sort.png](images/Counting_sort.png)
+![Counting_sort](images/Counting_sort.gif)
 
 ### Radix Sort (Raíz) `a=r` o `a=R`
 
 Ordena los números considerando sus dígitos de menor a mayor peso.
 
-![Radix_sort.png](images/Radix_sort.png)
+![Radix_sort](images/Radix_sort.gif)
 
 ## Tipos de Listas (t)
 
